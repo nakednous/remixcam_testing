@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/all/remixcam.jar"/>
 	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/all/TUIO.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/p5-2x"/>
+	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/gwt/gwt-hashcode-equals-0.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
