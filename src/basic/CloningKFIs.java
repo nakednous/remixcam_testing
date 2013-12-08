@@ -119,9 +119,6 @@ public class CloningKFIs extends PApplet {
 		    
 		    auxScene.camera().setKeyFrameInterpolator(1, kfiNew);
 		}
-		if (key == 'z') {
-			println("main scene paths: " + scene.camera().kfi.size());
-		}
 	}
 	
 	public static void main(String args[]) {
