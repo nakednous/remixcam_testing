@@ -11,6 +11,7 @@ import geom.Sphere;
 public class TestApi extends PApplet {
 	Scene scene;
 	InteractiveFrame f1, f2, f3, f4, f5;
+	RefFrame f6 = new RefFrame();
 	Vec v, p;
 	Vec res;
 
@@ -105,6 +106,7 @@ public class TestApi extends PApplet {
 		//drawPrimitives(color(255));
 		
 		drawLine();
+		drawBoxes();
 	    
 		/**
 		pushMatrix();		
@@ -205,10 +207,12 @@ public class TestApi extends PApplet {
 		// */
 	}
 	
-	public void drawLine() {
+	public void drawBoxes() {
 		box1.draw();
 		box5.draw();
-		
+	}
+	
+	public void drawLine() {		
 		if(wp != null)
 		if(wp.found) {
 			pushStyle();
@@ -311,8 +315,14 @@ public class TestApi extends PApplet {
 	
 	public void keyPressed() {
 		if(key == 'u' || key == 'U') {
-			Vec v = f4.zAxis();
-			println("f4.zAxis(): " + v + " mag: " + v.mag());			
+			//Vec v = f4.zAxis();
+			//println("f4.zAxis(): " + v + " mag: " + v.mag());			
+			Mat m = f5.matrix();
+			println("f5 matrix is: ");
+			m.print();
+			f6.fromMatrix(m, f5.scaling());
+			println("f6 matrix is: ");
+			f6.matrix().print();
 		}
 		if(key == 'v' || key == 'V') {
 			if(scene.isRightHanded())
@@ -379,97 +389,4 @@ public class TestApi extends PApplet {
 		println("zFar: " + scene.camera().zFar());
 		println("cam mag: " + scene.camera().frame().magnitude());
 	}
-	
-	/**
-	public class TestIFrame extends InteractiveFrame {
-		public TestIFrame(AbstractScene scn) {
-			super(scn);
-		}
-		
-		@Override			
-		protected void execAction3D(Point eventPoint, Camera camera) {
-			int deltaY = 0;
-			if(action != remixlab.remixcam.core.AbstractScene.DeviceAction.NO_DEVICE_ACTION) {
-				deltaY = (int) (prevPos.y - eventPoint.y);//as it were LH
-				if( scene.isRightHanded() )
-					deltaY = -deltaY;
-			}
-			switch (action) {
-			case ROTATE: {
-				Vec trans = camera.projectedCoordinatesOf(position());
-				Quat rot = deformedBallQuaternion((int)eventPoint.x, (int)eventPoint.y, trans.x(), trans.y(), camera);
-				rot = iFrameQuaternion(rot, camera);
-				computeDeviceSpeed(eventPoint);
-				setSpinningQuaternion(rot);
-				//drawSpinningQuaternion();
-				spin();
-				prevPos = eventPoint;
-				break;
-			}
-			default: {
-				super.execAction3D(eventPoint, camera);
-			}
-			}
-		}
-		
-		@Override
-		protected Quat deformedBallQuaternion(int x, int y, float cx, float cy, Camera camera) {			
-			// Points on the deformed ball
-            float px = rotationSensitivity() *                         ((int)prevPos.x - cx)                           / camera.screenWidth();
-            float py = rotationSensitivity() * (scene.isLeftHanded() ? ((int)prevPos.y - cy) : ( cy - (int)prevPos.y)) / camera.screenHeight();
-            float dx = rotationSensitivity() *                         (x - cx)             / camera.screenWidth();
-            float dy = rotationSensitivity() * (scene.isLeftHanded() ? (y - cy) : (cy - y)) / camera.screenHeight();
-
-			Vec p1 = new Vec(px, py, projectOnBall(px, py));
-			Vec p2 = new Vec(dx, dy, projectOnBall(dx, dy));
-			// Approximation of rotation angle Should be divided by the projectOnBall size, but it is 1.0
-			Vec axis = p2.cross(p1);
-			float angle = 2.0f * (float) Math.asin((float) Math.sqrt(axis.squaredNorm() / p1.squaredNorm() / p2.squaredNorm()));			
-			return new Quat(axis, angle);
-		}
-		
-//		protected Quat iFrameQuaternion(Quat rot, Camera camera) {
-//			Vec trans = new Vec();	
-//			boolean twist = false;
-//			
-//			trans = rot.axis();
-//			trans = transformOfFrom(trans, camera.frame());
-//			
-//			Vec res = new Vec(trans);			
-//			// perform conversion			
-//			if (scaling().x() < 0 )	res.x(-trans.x());
-//			if (scaling().y() < 0 )	res.y(-trans.y());
-//			if (scaling().z() < 0 )	res.z(-trans.z());
-//			
-//			if(referenceFrame() != null)
-//				twist = (  referenceFrame().magnitude().x()
-//						 * referenceFrame().magnitude().y()
-//						 * referenceFrame().magnitude().z()
-//						 < 0);
-//			
-//			return new Quat(res, twist ? rot.angle() : -rot.angle());						
-//		}
-		
-		public void drawSpinningQuaternion() {
-			if(spinningQuaternion()== null)
-				return;
-			Vec axis = ((Quat)spinningQuaternion()).axis();			
-			axis = Vec.mult(axis, 60);
-			((Scene)scene).pg3d().pushStyle();
-			((Scene)scene).pg3d().pushMatrix();
-			applyWorldTransformation();
-			
-			((Scene)scene).pg3d().noStroke();
-			((Scene)scene).pg3d().fill(color(0, 126, 255, 10));			
-			((Scene)scene).pg3d().sphere(50);
-			
-			((Scene)scene).pg3d().stroke(255,0,0);
-			((Scene)scene).pg3d().strokeWeight(4);
-			((Scene)scene).pg3d().line(0,0,0, axis.x(), axis.y(), axis.z());
-						
-			((Scene)scene).pg3d().popMatrix();
-			((Scene)scene).pg3d().popStyle();
-		}
-	}
-	*/
 }

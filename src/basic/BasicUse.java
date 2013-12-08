@@ -17,8 +17,7 @@ public class BasicUse extends PApplet {
 		//size(640, 360, P3D);
 		size(640, 360, OPENGL);
 		
-		println("major version: " + Scene.majorVersionNumber() );
-		println("minor version: " + Scene.minorVersionNumber() );
+		println("Version: " + Scene.prettyVersion );
 		
 		scene = new Scene(this);		
 	

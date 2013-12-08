@@ -17,6 +17,7 @@ public class FrameInteraction extends PApplet {
 		iFrame.translate(new Vec(30, 30, 0));
 		iFrame.setDampingFriction(0);
 		scene.camera().frame().setDampingFriction(0);
+		noLights();
 	}
 
 	public void draw() {
@@ -27,8 +28,8 @@ public class FrameInteraction extends PApplet {
 		// Save the current model view matrix
 		pushMatrix();
 		// Multiply matrix to get in the frame coordinate system.
-		// applyMatrix(iFrame.matrix()) is possible but inefficient 
-		iFrame.applyTransformation();//very efficient
+		applyMatrix(Scene.toPMatrix(iFrame.matrix()));// is possible but inefficient 
+		//iFrame.applyTransformation();//very efficient
 		// Draw an axis using the Scene static function
 		scene.drawAxis(20);
 		
@@ -52,7 +53,7 @@ public class FrameInteraction extends PApplet {
 	public void keyPressed() {
 		if( key == 'i') {
 			if( focusIFrame ) {
-				scene.defaultMouseAgent().setDefaultGrabber(scene.viewport().frame());
+				scene.defaultMouseAgent().setDefaultGrabber(scene.viewPoint().frame());
 				scene.defaultMouseAgent().enableTracking();
 			} else {
 				scene.defaultMouseAgent().setDefaultGrabber(iFrame);

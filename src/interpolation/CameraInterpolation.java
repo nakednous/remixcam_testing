@@ -45,7 +45,7 @@ public class CameraInterpolation extends PApplet {
 		scene.camera().lookAt( scene.camera().sceneCenter() );
 		scene.showAll();
 		
-		scene.setViewportPathsAreDrawn(true);
+		scene.setViewPointPathsAreDrawn(true);
 	}
 	
 	public void keyPressed() {

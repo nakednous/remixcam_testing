@@ -75,7 +75,8 @@ public class TUIO6DOFAgent extends HIDAgent {
 												 0,
 												 TH_NOMODIFIER_MASK,
 												 TH_NOBUTTON);
-		updateGrabber(event);
 		prevEvent = event.get();
+		disableTracking();
+		enableTracking();
 	}
 }

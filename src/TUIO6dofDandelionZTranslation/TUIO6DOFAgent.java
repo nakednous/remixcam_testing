@@ -88,10 +88,11 @@ public class TUIO6DOFAgent extends HIDAgent {
 												 0,
 												 TH_NOMODIFIER_MASK,
 												 TH_NOBUTTON);
-		updateGrabber(event);
 		if( (grabber().getClass() == InteractiveFrame.class ) && translateZ )
 			prevEvent = new GenericDOF6Event<DOF6Action>(0,0,tcur.getScreenY(scene.height()),0,0,0);
 		else
 			prevEvent = event.get();
+		disableTracking();
+		enableTracking();
 	}
 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/all/controlP5.jar"/>
 	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/all/libTUIO.jar"/>
-	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace1/sketchbook/libraries/remixcam/library/remixcam.jar"/>
+	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace1/sketchbook/libraries/remixcam/library/remixcam.jar" sourcepath="/remixcam"/>
 	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/all/TUIO.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/p5-2x"/>
 	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/gwt/gwt-hashcode-equals-0.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/pierre/Dropbox/workspace/libs/all/SimpleOpenNI.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/p5-2x"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -15,7 +15,8 @@ import remixlab.tersehandling.generic.profile.*;
 
 public class TUIO2DOFAgent extends HIDAgent {
 	Scene scene;
-	GenericDOF2Event<DOF2Action> event, prevEvent;
+	//GenericDOF2Event<DOF2Action> event, prevEvent;
+	TUIOEvent event, prevEvent;
 
 	public TUIO2DOFAgent(Scene scn, String n) {
 		super(scn, n);
@@ -36,34 +37,50 @@ public class TUIO2DOFAgent extends HIDAgent {
 	}
 
 	public void addTuioCursor(TuioCursor tcur) {
+		/**
 		event = new GenericDOF2Event<DOF2Action>(prevEvent,
 												 tcur.getScreenX(scene.width()),
 												 tcur.getScreenY(scene.height()),
 												 TH_NOMODIFIER_MASK,
 												 TH_NOBUTTON);
+		// */
+		event = new TUIOEvent(prevEvent,
+				 		      tcur.getScreenX(scene.width()),
+				 		      tcur.getScreenY(scene.height()));
 		updateGrabber(event);
 		prevEvent = event.get();
 	}
 
 	// called when a cursor is moved
 	public void updateTuioCursor(TuioCursor tcur) {
+		/**
 		event = new GenericDOF2Event<DOF2Action>(prevEvent,
 				 								 tcur.getScreenX(scene.width()),
 				 								 tcur.getScreenY(scene.height()),
 				 								 TH_NOMODIFIER_MASK,
 				 								 TH_NOBUTTON);
+				 								 //*/
+		event = new TUIOEvent(prevEvent,
+	 		                  tcur.getScreenX(scene.width()),
+	 		                  tcur.getScreenY(scene.height()));
 		handle(event);
 		prevEvent = event.get();
 	}
 
 	// called when a cursor is removed from the scene
 	public void removeTuioCursor(TuioCursor tcur) {
+		/**
 		event = new GenericDOF2Event<DOF2Action>(prevEvent,
 												 tcur.getScreenX(scene.width()),
 												 tcur.getScreenY(scene.height()),
 												 TH_NOMODIFIER_MASK,
 												 TH_NOBUTTON);
-		updateGrabber(event);
+												 // */	
+		event = new TUIOEvent(prevEvent,
+	 		                  tcur.getScreenX(scene.width()),
+	 		                  tcur.getScreenY(scene.height()));
 		prevEvent = event.get();
+		disableTracking();
+		enableTracking();
 	}
 }

@@ -106,11 +106,11 @@ public class TwoViews extends PApplet {
 		}
 		if(key == 'u' || key== 'U' ) {
 			println("projection matrix:");
-			scene.window().projection().print();
+			scene.window().getProjection().print();
 			println("world matrix:");
 			scene.window().frame().worldMatrix().print();			
 			println("view matrix:");
-			scene.window().view().print();
+			scene.window().getView().print();
 			println("camera angle: " + scene.window().frame().orientation().angle());
 		}
 	}

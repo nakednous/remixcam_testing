@@ -8,7 +8,7 @@ import remixlab.dandelion.core.*;
 import remixlab.dandelion.geom.*;
 
 @SuppressWarnings("serial")
-public class StandardCamera extends PApplet {
+public class CloningKFIs extends PApplet {
 	Scene scene, auxScene;
 	PGraphics canvas, auxCanvas;
 
@@ -27,6 +27,7 @@ public class StandardCamera extends PApplet {
 		auxCanvas = createGraphics(640, 360, P3D);
 		// Note that we pass the upper left corner coordinates where the scene
 		// is to be drawn (see drawing code below) to its constructor.
+		//auxScene = new Scene(this, auxCanvas, 0, 360);
 		auxScene = new Scene(this, auxCanvas, 0, 360);
 		auxScene.camera().setType(Camera.Type.ORTHOGRAPHIC);
 		auxScene.setAxisIsDrawn(false);
@@ -93,6 +94,33 @@ public class StandardCamera extends PApplet {
 			scene.disableDefaultKeyboardAgent();
 			auxScene.enableDefaultMouseAgent();
 			auxScene.enableDefaultKeyboardAgent();
+		}
+	}
+	
+	public void keyPressed() {
+		/*
+		if (key == 'x') {
+		    KeyFrameInterpolator kfiOriginal = scene.camera().keyFrameInterpolator(1);		    
+		    KeyFrameInterpolator kfiNew = kfiOriginal.get();
+		    scene.camera().setKeyFrameInterpolator(2, kfiNew);
+		}
+		// */
+		if (key == 'y') {
+		    //KeyFrameInterpolator kfiOriginal = scene.camera().keyFrameInterpolator(1);		    
+		    //KeyFrameInterpolator kfiNew = kfiOriginal.get();
+			KeyFrameInterpolator kfiNew = scene.camera().keyFrameInterpolator(1).get();
+		    
+		    kfiNew.scene = auxScene;
+		    kfiNew.setFrame(auxScene.camera().frame());
+		    
+		    for (int i = 0; i < kfiNew.numberOfKeyFrames(); ++i)
+		    	  if(kfiNew.keyFrame(i) instanceof InteractiveFrame)
+		    	    ((InteractiveFrame)kfiNew.keyFrame(i)).scene = auxScene;
+		    
+		    auxScene.camera().setKeyFrameInterpolator(1, kfiNew);
+		}
+		if (key == 'z') {
+			println("main scene paths: " + scene.camera().kfi.size());
 		}
 	}
 	
