@@ -9,6 +9,7 @@ public class FrameInterpolation extends PApplet {
 	InteractiveFrame keyFrame[];
 	KeyFrameInterpolator kfi;
 	int nbKeyFrames;
+	float scl = 5;
 
 	public void setup() {
 	  size(640, 360, P3D);
@@ -42,7 +43,7 @@ public class FrameInterpolation extends PApplet {
 	  scene.drawAxis(30);
 	  popMatrix();
 	  
-	  kfi.drawPath(5, 10);
+	  kfi.drawPath(1, 6, scl);
 	  
 	  for (int i=0; i<nbKeyFrames; ++i) {
 	    pushMatrix();
@@ -63,7 +64,8 @@ public class FrameInterpolation extends PApplet {
 	  if ( key == 'u')
 	    kfi.setInterpolationSpeed(kfi.interpolationSpeed()-0.25f);
 	  if ( key == 'v')
-	    kfi.setInterpolationSpeed(kfi.interpolationSpeed()+0.25f);  	
+	    kfi.setInterpolationSpeed(kfi.interpolationSpeed()+0.25f);
+	  if(key == '+') {scl = scl*1.2f; println("scl: " + scl);}
+	  if(key == '-') {scl = scl*0.8f; println("scl: " + scl);}
 	}
-
 }

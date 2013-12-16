@@ -12,7 +12,8 @@ public class FrameInteraction extends PApplet {
 	
 	public void setup()	{
 		size(640, 360, P3D);		
-		scene = new Scene(this);	
+		scene = new Scene(this);
+		scene.setRadius(1000);
 		iFrame = new InteractiveFrame(scene);
 		iFrame.translate(new Vec(30, 30, 0));
 		iFrame.setDampingFriction(0);

@@ -21,7 +21,6 @@ public class CloningKFIs extends PApplet {
 		mainScene = new Scene(this, canvas);
 		mainScene.setRadius(mainScene.radius()*1.6f);
 		
-		mainScene.defaultKeyboardAgent().profile().setShortcut('v', KeyboardAction.CAMERA_KIND);
 		// enable computation of the frustum planes equations (disabled by default)
 		mainScene.enableFrustumEquationsUpdate();
 		mainScene.setGridIsDrawn(false);

@@ -22,7 +22,6 @@ public class FrameInteraction extends PApplet {
 		size(640, 360, P3D);
 		prosceneShader = loadShader("FrameFrag.glsl", "FrameVert_pmv.glsl");
 		scene = new Scene(this);
-		scene.defaultKeyboardAgent().profile().setShortcut('v', KeyboardAction.CAMERA_KIND);
 		helper = new MatrixStackHelper(scene);
 		if(prosceneShaders)
 			scene.setMatrixHelper(new MatrixStackHelper(scene));

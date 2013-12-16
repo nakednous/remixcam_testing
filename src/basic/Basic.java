@@ -14,7 +14,6 @@ public class Basic extends PApplet {
 	public void setup() {
 	  size(640, 360, P3D);
 	  scene = new Scene(this);
-	  scene.defaultKeyboardAgent().profile().setShortcut('v', KeyboardAction.CAMERA_KIND);	  
 	  //scene.setJavaTimers();
 	  scene.showAll();
 	  scene.camera().frame().setDampingFriction(0);

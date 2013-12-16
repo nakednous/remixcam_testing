@@ -11,10 +11,11 @@ public class FrameInteraction extends PApplet {
 	InteractiveFrame iFrame;
 
 	public void setup() {
-		//size(640, 360, P2D);
-		size(640, 360, JAVA2D);
+		size(640, 360, P2D);
+		//size(640, 360, JAVA2D);
 		//scene = new Java2DScene(this);
 		scene = new Scene(this);
+		scene.setRadius(1000);
 		iFrame = new InteractiveFrame(scene);
 		// A Scene has a single InteractiveFrame (null by default). We set it
 		// here.
