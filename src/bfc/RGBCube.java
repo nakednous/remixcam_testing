@@ -49,22 +49,22 @@ public class RGBCube extends PApplet {
 		// enable computation of the frustum planes equations (disabled by
 		// default)
 		//scene.enableFrustumEquationsUpdate();
-		scene.setGridIsDrawn(false);
+		scene.setGridVisualHint(false);
 		scene.addDrawHandler(this, "mainDrawing");
 
 		auxCanvas = createGraphics(640, 360, P3D);
 		auxScene = new Scene(this, (PGraphicsOpenGL) auxCanvas);
 		auxScene.camera().setType(Camera.Type.ORTHOGRAPHIC);
-		auxScene.setAxisIsDrawn(false);
-		auxScene.setGridIsDrawn(false);
+		auxScene.setAxisVisualHint(false);
+		auxScene.setGridVisualHint(false);
 		auxScene.setRadius(200);
 		auxScene.showAll();
 		auxScene.addDrawHandler(this, "auxiliarDrawing");
 		
-		mouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		keyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
-		auxMouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
+		mouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+		keyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
+		auxMouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
 
 		handleMouse();
 

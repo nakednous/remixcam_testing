@@ -22,12 +22,17 @@ public class PixelP5Ratio extends PApplet {
 	  this.stroke(255,0,0);
 	  
 	  Vec p1 = scene.center();
-	  Vec p2 = Vec.add(scene.center(), Vec.mult(scene.camera().upVector(), 50 * scene.camera().pixelP5Ratio(scene.center()))); 
-	  
+	  Vec p2 = Vec.add(scene.center(), Vec.mult(scene.camera().upVector(), 170 * scene.camera().pixelSceneRatio(scene.center())));	  
 	  line(p1.x(), p1.y(), p1.z(), p2.x(), p2.y(), p2.z());
 	}
 	
 	public void keyPressed() {
+		//TODO danger -> with this scaling setting
+		if(key == 'u')
+			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
+		if(key == 'v')
+			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
+		/*
 		if(key == 'u' || key == 'U') {
 			if(scene.isRightHanded()) {
 				scene.setLeftHanded();
@@ -38,6 +43,7 @@ public class PixelP5Ratio extends PApplet {
 				println("Right handed set");
 			}
 		}
+		*/
 		if(key == 'x') {
 			scene.camera().frame().setScaling(-scene.camera().frame().scaling().x(),
 					                           scene.camera().frame().scaling().y(),

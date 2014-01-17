@@ -15,7 +15,7 @@ public class Luxo extends PApplet {
 		//scene.camera().optimizeUnprojectCache(true);
 		scene.setRadius(100);
 		scene.showAll();
-		scene.setFrameSelectionHintIsDrawn(true);
+		scene.setFrameVisualHint(true);
 		lamp = new Lamp(scene);
 	}
 	

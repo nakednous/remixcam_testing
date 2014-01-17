@@ -24,8 +24,8 @@ public class AlternativeUse extends PApplet {
 		}
 
 		public void init() {			
-			setGridIsDrawn(true);
-			setAxisIsDrawn(true);
+			setGridVisualHint(true);
+			setAxisVisualHint(true);
 		}
 		
 		public void proscenium() {

@@ -6,13 +6,13 @@ import remixlab.proscene.*;
 
 public class AABox {
 	Scene scene;
-	RefFrame frame;
+	Frame frame;
 	float w, h, d, halfW, halfH, halfD, radius;
 	int r, g, b;
 
 	AABox(Scene scn) {
 		scene = scn;
-		frame = new RefFrame();
+		frame = new Frame();
 		setSize();
 		setPosition();
 		setColor();
@@ -32,14 +32,14 @@ public class AABox {
 	}
 	
 	public void draw(PApplet parent, Camera camera,	boolean drawBoundingVolumes, boolean drawAxis) {
-		switch (camera.sphereIsVisible(frame.position(), radius)) {
+		switch (camera.ballIsVisible(frame.position(), radius)) {
 		case VISIBLE:
 			drawCube(parent, drawBoundingVolumes, drawAxis);
 			break;
 		case SEMIVISIBLE:
 			Vec BBCorner1 = new Vec(frame.position().x() - this.halfW, frame.position().y() + this.halfH, frame.position().z() - this.halfD);
 			Vec BBCorner2 = new Vec(frame.position().x() + this.halfW, frame.position().y() - this.halfH, frame.position().z() + this.halfD);
-			switch (camera.aaBoxIsVisible(BBCorner1, BBCorner2)) {
+			switch (camera.boxIsVisible(BBCorner1, BBCorner2)) {
 			case VISIBLE:
 			case SEMIVISIBLE:
 				drawCube(parent, drawBoundingVolumes, drawAxis);

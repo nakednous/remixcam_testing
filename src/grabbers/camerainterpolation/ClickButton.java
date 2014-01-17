@@ -25,23 +25,23 @@ public class ClickButton extends Button2D {
 		if (event instanceof ClickEvent)
 			if (((ClickEvent) event).getClickCount() == 1)
 				if (path == 0)
-					scene.toggleViewPointPathsAreDrawn();
+					scene.togglePathsVisualHint();
 				else
-					scene.viewPoint().playPath(path);
+					scene.view().playPath(path);
 	}
 
 	public void display() {
 		String text = new String();
 		if (path == 0)
-			if (scene.viewPointPathsAreDrawn())
+			if (scene.pathsVisualHint())
 				text = "don't edit viewport paths";
 			else
 				text = "edit viewport paths";
 		else {
 			if (grabsAgent(scene.defaultMouseAgent())) {
-				if (scene.viewPoint().keyFrameInterpolator(path)
+				if (scene.view().keyFrameInterpolator(path)
 						.numberOfKeyFrames() > 1)
-					if (scene.viewPoint().keyFrameInterpolator(path)
+					if (scene.view().keyFrameInterpolator(path)
 							.interpolationIsStarted())
 						text = "stop path ";
 					else
@@ -49,7 +49,7 @@ public class ClickButton extends Button2D {
 				else
 					text = "restore position ";
 			} else {
-				if (scene.viewPoint().keyFrameInterpolator(path)
+				if (scene.view().keyFrameInterpolator(path)
 						.numberOfKeyFrames() > 1)
 					text = "path ";
 				else

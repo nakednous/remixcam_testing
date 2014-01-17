@@ -25,8 +25,10 @@ public class IFeelDizzy extends PApplet {
 
 		img = loadImage("dizzi.jpg");
 		scene = new Scene(this);
-		scene.setGridIsDrawn(false);
-		scene.setAxisIsDrawn(false);
+		
+		scene.setVisualHints(Constants.PATHS);
+		//scene.setGridVisualHint(false);
+		//scene.setAxisVisualHint(false);
 
 		message1 = new InteractiveFrame(scene);
 		message2 = new InteractiveFrame(scene);
@@ -46,25 +48,25 @@ public class IFeelDizzy extends PApplet {
 		
 		// create a camera path and add some key frames:
 		// key frames can be added at runtime with keys [j..n]
-		scene.viewPoint().frame().setPosition(new Vec(89.71913f, -101.32816f));
-		scene.viewPoint().frame().setOrientation(new Rot(-1.542718f));
-		scene.viewPoint().frame().setScaling(0.3391391f);
-		scene.viewPoint().addKeyFrameToPath(1);
+		scene.view().frame().setPosition(new Vec(89.71913f, -101.32816f));
+		scene.view().frame().setOrientation(new Rot(-1.542718f));
+		scene.view().frame().setScaling(0.3391391f);
+		scene.view().addKeyFrameToPath(1);
 		
-		scene.viewPoint().frame().setPosition(new Vec(61.501305f, 71.02506f));
-		scene.viewPoint().frame().setOrientation(new Rot(-1.5142304f));
-		scene.viewPoint().frame().setScaling(0.13526922f);
-		scene.viewPoint().addKeyFrameToPath(1);
+		scene.view().frame().setPosition(new Vec(61.501305f, 71.02506f));
+		scene.view().frame().setOrientation(new Rot(-1.5142304f));
+		scene.view().frame().setScaling(0.13526922f);
+		scene.view().addKeyFrameToPath(1);
 		
-		scene.viewPoint().frame().setPosition(new Vec(-99.00719f, -4.614401f));
-		scene.viewPoint().frame().setOrientation(new Rot(-0.010666408f));
-		scene.viewPoint().frame().setScaling(0.8055185f);
-		scene.viewPoint().addKeyFrameToPath(1);
+		scene.view().frame().setPosition(new Vec(-99.00719f, -4.614401f));
+		scene.view().frame().setOrientation(new Rot(-0.010666408f));
+		scene.view().frame().setScaling(0.8055185f);
+		scene.view().addKeyFrameToPath(1);
 
 		// re-position the camera:
-		scene.viewPoint().frame().setPosition(new Vec(89.71913f, -101.32816f));
-		scene.viewPoint().frame().setOrientation(new Rot(-1.542718f));
-		scene.viewPoint().frame().setScaling(0.3391391f);
+		scene.view().frame().setPosition(new Vec(89.71913f, -101.32816f));
+		scene.view().frame().setOrientation(new Rot(-1.542718f));
+		scene.view().frame().setScaling(0.3391391f);
 
 		// drawing of camera paths are toggled with key 'r'.
 		//scene.setViewportPathsAreDrawn(true);
@@ -106,10 +108,10 @@ public class IFeelDizzy extends PApplet {
 	void updateButtons() {
 		for (int i = 1; i < buttons.size(); i++) {
 			// Check if CameraPathPlayer is still valid
-			if ((buttons.get(i) != null) && (scene.viewPoint().keyFrameInterpolator(i) == null))
+			if ((buttons.get(i) != null) && (scene.view().keyFrameInterpolator(i) == null))
 				buttons.set(i, null);
 			// Or add it if needed
-			if ((scene.viewPoint().keyFrameInterpolator(i) != null)	&& (buttons.get(i) == null))
+			if ((scene.view().keyFrameInterpolator(i) != null)	&& (buttons.get(i) == null))
 				buttons.set(i, new ClickButton(scene, new PVector(10, +(i) * (h + 7)), i));
 		}
 	}
@@ -119,6 +121,16 @@ public class IFeelDizzy extends PApplet {
 			Button2D button = (Button2D) buttons.get(i);
 			if (button != null)
 				button.display();
+		}
+	}
+	
+	public void keyPressed() {
+		if(key == 'u' || key == 'U') {
+			scene.view().flip();
+			if(scene.isRightHanded())
+				println("Left handed set");
+			else
+				println("Right handed set");
 		}
 	}
 
@@ -142,10 +154,10 @@ public class IFeelDizzy extends PApplet {
 			image.magnitude().print();
 
 			GeomFrame kfi;
-			int keys = scene.viewPoint().keyFrameInterpolator(1)
+			int keys = scene.view().keyFrameInterpolator(1)
 					.numberOfKeyFrames();
 			for (int i = 0; i < keys; i++) {
-				kfi = scene.viewPoint().keyFrameInterpolator(1).keyFrame(i);
+				kfi = scene.view().keyFrameInterpolator(1).keyFrame(i);
 				println("key " + i);
 				kfi.position().print();
 				kfi.orientation().print();

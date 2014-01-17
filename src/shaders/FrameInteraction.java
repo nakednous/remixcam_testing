@@ -77,7 +77,7 @@ public class FrameInteraction extends PApplet {
 		
 		// /**
 		//Funciona sin transponer las matrices:
-		pmv = Mat.mult(scene.getProjection(), scene.getModelView());
+		pmv = Mat.mult(scene.projection(), scene.modelView());
 		pmatrix.set(pmv.get(new float[16]));
 		prosceneShader.set("proscene_transform", pmatrix);
 		// */
@@ -94,7 +94,7 @@ public class FrameInteraction extends PApplet {
 	public void keyPressed() {
 		if( key == 'i') {
 			if( focusIFrame ) {
-				scene.defaultMouseAgent().setDefaultGrabber(scene.viewPoint().frame());
+				scene.defaultMouseAgent().setDefaultGrabber(scene.view().frame());
 				scene.defaultMouseAgent().enableTracking();
 			} else {
 				scene.defaultMouseAgent().setDefaultGrabber(iFrame);
@@ -109,11 +109,11 @@ public class FrameInteraction extends PApplet {
 			println("P5 modelview is");
 			((PMatrix3D)scene.pg3d().getMatrix()).print();
 			println("Proscene modelview is");
-			helper.getModelView().print();
+			helper.modelView().print();
 			println("P5 projection is");
 			scene.pg3d().projection.print();
 			println("Proscene projection is");
-			helper.getProjection().print();
+			helper.projection().print();
 		}
 	}
 		

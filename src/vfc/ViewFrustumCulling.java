@@ -25,23 +25,23 @@ public class ViewFrustumCulling extends PApplet {
 
 		canvas = createGraphics(640, 360, P3D);
 		scene = new Scene(this, canvas);
-		scene.enableFrustumEquationsUpdate();
-		scene.setGridIsDrawn(false);
+		scene.enableBoundaryEquations();
+		scene.setGridVisualHint(false);
 
 		auxCanvas = createGraphics(640, 360, P3D);
 		// Note that we pass the upper left corner coordinates where the scene
 		// is to be drawn (see drawing code below) to its constructor.
 		auxScene = new Scene(this, auxCanvas, 0, 360);
 		//auxScene.camera().setType(Camera.Type.ORTHOGRAPHIC);
-		auxScene.setAxisIsDrawn(false);
-		auxScene.setGridIsDrawn(false);
+		auxScene.setAxisVisualHint(false);
+		auxScene.setGridVisualHint(false);
 		auxScene.setRadius(200);
 		auxScene.showAll();
 		
-		mouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		keyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
-		auxMouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
+		mouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+		keyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
+		auxMouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
 
 		handleMouse();
 	}

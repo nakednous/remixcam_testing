@@ -114,7 +114,7 @@ public class EventHandling extends PApplet {
 	}
 	
 	public boolean iFrameGrabsInput() {
-		if (scene.terseHandler().isAgentRegistered("proscene_mouse"))
+		if (scene.terseHandler().agentRegistered("proscene_mouse"))
 			return iFrame.grabsAgent(scene.defaultMouseAgent());
 		else
 			return grabsInput;
@@ -122,7 +122,7 @@ public class EventHandling extends PApplet {
 
 	@Override
 	public void mouseMoved() {
-		if(!scene.terseHandler().isAgentRegistered(scene.defaultMouseAgent())) {
+		if(!scene.terseHandler().agentRegistered(scene.defaultMouseAgent())) {
 		//if (!scene.isAgentRegistered("proscene_mouse")) {
 			event = new GenericDOF2Event<Constants.DOF2Action>(prevEvent, (float) mouseX, (float) mouseY);
 			if(enforced)
@@ -135,12 +135,12 @@ public class EventHandling extends PApplet {
 	
 	@Override
 	public void mouseDragged() {
-		if (!scene.terseHandler().isAgentRegistered("proscene_mouse")) {
+		if (!scene.terseHandler().agentRegistered("proscene_mouse")) {
 			event = new GenericDOF2Event<Constants.DOF2Action>(prevEvent, (float) mouseX, (float) mouseY, mouseAction);
 			if(grabsInput)
 				scene.terseHandler().enqueueEventTuple(new EventGrabberTuple(event, iFrame));
 			else
-				scene.terseHandler().enqueueEventTuple(new EventGrabberTuple(event, scene.viewPoint().frame()));
+				scene.terseHandler().enqueueEventTuple(new EventGrabberTuple(event, scene.view().frame()));
 			prevEvent = event.get();
 		}
 	}
@@ -165,7 +165,7 @@ public class EventHandling extends PApplet {
 			//println("cam listeners: " + scene.pinhole().frame().listeners() + " number: " + scene.pinhole().frame().listeners().size());
 		}
 		
-		if (!scene.terseHandler().isAgentRegistered("proscene_keyboard")) {
+		if (!scene.terseHandler().agentRegistered("proscene_keyboard")) {
 			if (key == 'a' || key == 'g') {
 				if (key == 'a')
 					keyAction = Constants.KeyboardAction.DRAW_GRID;
@@ -177,7 +177,7 @@ public class EventHandling extends PApplet {
 			}
 		}
 		if( key == 'k' || key == 'K' ) {
-			if (!scene.terseHandler().isAgentRegistered("proscene_keyboard")) {
+			if (!scene.terseHandler().agentRegistered("proscene_keyboard")) {
 				scene.terseHandler().registerAgent(keyboard);
 				println("High level key event handling");
 			}
@@ -188,13 +188,13 @@ public class EventHandling extends PApplet {
 		}
 		if (key == 'y') {
 			enforced = !enforced;
-			if(scene.terseHandler().isAgentRegistered(scene.defaultMouseAgent()))
+			if(scene.terseHandler().agentRegistered(scene.defaultMouseAgent()))
 				if(enforced) {
 					scene.defaultMouseAgent().setDefaultGrabber(iFrame);
 					scene.defaultMouseAgent().disableTracking();
 				}
 				else {
-					scene.defaultMouseAgent().setDefaultGrabber(scene.viewPoint().frame());
+					scene.defaultMouseAgent().setDefaultGrabber(scene.view().frame());
 					scene.defaultMouseAgent().enableTracking();
 				}
 			else
@@ -204,7 +204,7 @@ public class EventHandling extends PApplet {
 					grabsInput = false;
 		}
 		if( key == 'm' || key == 'M' ) {
-			if (!scene.terseHandler().isAgentRegistered("proscene_mouse")) {
+			if (!scene.terseHandler().agentRegistered("proscene_mouse")) {
 				scene.terseHandler().registerAgent(mouse);
 				println("High level mouse event handling");
 			}

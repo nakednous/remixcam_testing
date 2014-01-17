@@ -46,7 +46,7 @@ public class BoxNode {
 	}
 	
 	public void drawIfAllChildrenAreVisible(PApplet parent, Camera camera) {
-		Camera.Visibility vis = camera.aaBoxIsVisible(p1, p2);
+		Camera.Visibility vis = camera.boxIsVisible(p1, p2);
 		if ( vis == Camera.Visibility.VISIBLE )			
 			draw(parent);
 		else if ( vis == Camera.Visibility.SEMIVISIBLE )

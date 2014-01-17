@@ -22,8 +22,8 @@ public class StandardCamera extends PApplet {
 	  canvas = createGraphics(640, 360, P3D);
 	  scene = new Scene(this, (PGraphicsOpenGL) canvas);
 	  // enable computation of the frustum planes equations (disabled by default)
-	  scene.enableFrustumEquationsUpdate();
-	  scene.setGridIsDrawn(false);
+	  scene.enableBoundaryEquations();
+	  scene.setGridVisualHint(false);
 	  scene.addDrawHandler(this, "mainDrawing");
 
 	  auxCanvas = createGraphics(640, 360, P3D);
@@ -31,16 +31,16 @@ public class StandardCamera extends PApplet {
 	  // is to be drawn (see drawing code below) to its constructor.
 	  auxScene = new Scene(this, (PGraphicsOpenGL) auxCanvas, 0, 360);
 	  auxScene.camera().setType(Camera.Type.ORTHOGRAPHIC);
-	  auxScene.setAxisIsDrawn(false);
-	  auxScene.setGridIsDrawn(false);
+	  auxScene.setAxisVisualHint(false);
+	  auxScene.setGridVisualHint(false);
 	  auxScene.setRadius(200);
 	  auxScene.showAll();
 	  auxScene.addDrawHandler(this, "auxiliarDrawing");
 	  
-	  mouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		keyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
-		auxMouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
+	  mouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+	  keyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
+	  auxMouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+	  auxKeyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
 
 	  handleMouse();
 	}
@@ -51,7 +51,7 @@ public class StandardCamera extends PApplet {
 	  p.noStroke();
 	  // the main viewer camera is used to cull the sphere object against its
 	  // frustum
-	  switch (scene.camera().sphereIsVisible(new Vec(0, 0, 0), 40)) {
+	  switch (scene.camera().ballIsVisible(new Vec(0, 0, 0), 40)) {
 	  case VISIBLE:
 	    p.fill(0, 255, 0);
 	    p.sphere(40);

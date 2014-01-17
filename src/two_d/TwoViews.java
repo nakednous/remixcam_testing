@@ -29,10 +29,10 @@ public class TwoViews extends PApplet {
 		auxScene.setRadius(200);
 		auxScene.showAll();
 		
-		mouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		keyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
-		auxMouse = (ProsceneMouse)scene.terseHandler().getAgent("proscene_mouse");
-		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().getAgent("proscene_keyboard");
+		mouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+		keyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
+		auxMouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
+		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
 		
 		handleMouse();
 	}
@@ -58,7 +58,7 @@ public class TwoViews extends PApplet {
 		auxScene.pg().pushStyle();		
 		auxScene.pg().stroke(255,255,0);
 		auxScene.pg().fill(255,255,0,160);
-		auxScene.drawWindow(scene.window());
+		auxScene.drawCamera(scene.window());
 		auxScene.pg().popStyle();		
 		auxScene.endDraw();
 		auxCanvas.endDraw();

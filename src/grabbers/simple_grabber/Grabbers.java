@@ -23,7 +23,7 @@ public class Grabbers extends PApplet {
 		button1 = new ClickButton(scene, new PVector(10, 10), "+", true);
 		button2 = new ClickButton(scene, new PVector(16, (2 + button1.myHeight)), "-", false);
 		
-		scene.setGridIsDrawn(true);
+		scene.setGridVisualHint(true);
 		scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
 		scene.setRadius(150);
 		scene.showAll();

@@ -19,7 +19,7 @@ public class Animation extends PApplet {
 		particle = new Particle[nbPart];
 		for (int i = 0; i < particle.length; i++)
 		    particle[i] = new Particle(this);
-		scene.setAxisIsDrawn(false);
+		scene.setAxisVisualHint(false);
 		scene.startAnimation();
 	}
 	

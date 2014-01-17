@@ -27,7 +27,7 @@ public class ConstrainedFrame extends PApplet {
 		scene = new Scene(this);
 		// press 'i' to switch the interaction between the camera frame and the
 		scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
-		scene.setAxisIsDrawn(true);
+		scene.setAxisVisualHint(true);
 
 		constraints[0] = new LocalConstraint();
 		// Note that a CameraConstraint(camera) would produce the same results:

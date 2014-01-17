@@ -22,8 +22,8 @@ public class CloningKFIs extends PApplet {
 		mainScene.setRadius(mainScene.radius()*1.6f);
 		
 		// enable computation of the frustum planes equations (disabled by default)
-		mainScene.enableFrustumEquationsUpdate();
-		mainScene.setGridIsDrawn(false);
+		mainScene.enableBoundaryEquations();
+		mainScene.setGridVisualHint(false);
 		mainScene.addDrawHandler(this, "mainDrawing");
 		
 		auxCanvas = createGraphics(640, 360, P3D);
@@ -32,8 +32,8 @@ public class CloningKFIs extends PApplet {
 		//auxScene = new Scene(this, auxCanvas, 0, 360);
 		auxScene = new Scene(this, auxCanvas, 0, 360);
 		auxScene.camera().setType(Camera.Type.ORTHOGRAPHIC);
-		auxScene.setAxisIsDrawn(false);
-		auxScene.setGridIsDrawn(false);
+		auxScene.setAxisVisualHint(false);
+		auxScene.setGridVisualHint(false);
 		auxScene.setRadius(200);
 		auxScene.showAll();
 		auxScene.addDrawHandler(this, "auxiliarDrawing");
@@ -50,7 +50,7 @@ public class CloningKFIs extends PApplet {
 		p.background(0);
 		p.noStroke();
 		// the main viewer camera is used to cull the sphere object against its frustum
-		switch (mainScene.camera().sphereIsVisible(new Vec(0, 0, 0), 40)) {
+		switch (mainScene.camera().ballIsVisible(new Vec(0, 0, 0), 40)) {
 		case VISIBLE:
 			p.fill(0, 255, 0);
 			p.sphere(40);

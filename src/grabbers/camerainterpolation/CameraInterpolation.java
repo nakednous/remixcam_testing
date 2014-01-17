@@ -21,29 +21,29 @@ public class CameraInterpolation extends PApplet {
 
 		// create a camera path and add some key frames:
 		// key frames can be added at runtime with keys [j..n]
-		scene.viewPoint().setPosition(new Vec(80, 0, 0));
-		scene.viewPoint().lookAt(scene.viewPoint().sceneCenter());
-		scene.viewPoint().addKeyFrameToPath(1);
+		scene.view().setPosition(new Vec(80, 0, 0));
+		scene.view().lookAt(scene.view().sceneCenter());
+		scene.view().addKeyFrameToPath(1);
 
-		scene.viewPoint().setPosition(new Vec(30, 30, -80));
-		scene.viewPoint().lookAt(scene.viewPoint().sceneCenter());
-		scene.viewPoint().addKeyFrameToPath(1);
+		scene.view().setPosition(new Vec(30, 30, -80));
+		scene.view().lookAt(scene.view().sceneCenter());
+		scene.view().addKeyFrameToPath(1);
 
-		scene.viewPoint().setPosition(new Vec(-30, -30, -80));
-		scene.viewPoint().lookAt(scene.viewPoint().sceneCenter());
-		scene.viewPoint().addKeyFrameToPath(1);
+		scene.view().setPosition(new Vec(-30, -30, -80));
+		scene.view().lookAt(scene.view().sceneCenter());
+		scene.view().addKeyFrameToPath(1);
 
-		scene.viewPoint().setPosition(new Vec(-80, 0, 0));
-		scene.viewPoint().lookAt(scene.viewPoint().sceneCenter());
-		scene.viewPoint().addKeyFrameToPath(1);
+		scene.view().setPosition(new Vec(-80, 0, 0));
+		scene.view().lookAt(scene.view().sceneCenter());
+		scene.view().addKeyFrameToPath(1);
 
 		// re-position the camera:
-		scene.viewPoint().setPosition(new Vec(0, 0, 1));
-		scene.viewPoint().lookAt(scene.viewPoint().sceneCenter());
+		scene.view().setPosition(new Vec(0, 0, 1));
+		scene.view().lookAt(scene.view().sceneCenter());
 		scene.showAll();
 
 		// drawing of camera paths are toggled with key 'r'.
-		scene.setViewPointPathsAreDrawn(true);
+		scene.setPathsVisualHint(true);
 
 		buttons = new ArrayList(6);
 		for (int i = 0; i < 5; ++i)
@@ -67,10 +67,10 @@ public class CameraInterpolation extends PApplet {
 		for (int i = 1; i < buttons.size(); i++) {
 			// Check if CameraPathPlayer is still valid
 			if ((buttons.get(i) != null)
-					&& (scene.viewPoint().keyFrameInterpolator(i) == null))
+					&& (scene.view().keyFrameInterpolator(i) == null))
 				buttons.set(i, null);
 			// Or add it if needed
-			if ((scene.viewPoint().keyFrameInterpolator(i) != null)
+			if ((scene.view().keyFrameInterpolator(i) != null)
 					&& (buttons.get(i) == null))
 				buttons.set(i, new ClickButton(scene, new PVector(10, +(i)
 						* (h + 7)), i));
@@ -94,14 +94,11 @@ public class CameraInterpolation extends PApplet {
 		if(key == '-')
 			frameRate(frameRate - 10);		
 		if(key == 'u' || key == 'U') {
-			if(scene.isRightHanded()) {
-				scene.setLeftHanded();
+			scene.view().flip();
+			if(scene.isRightHanded())
 				println("Left handed set");
-			}
-			else {
-				scene.setRightHanded();
+			else
 				println("Right handed set");
-			}
 		}
 		println(frameRate);
 	}

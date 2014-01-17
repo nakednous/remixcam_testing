@@ -20,9 +20,9 @@ public class TestVFCGL extends PApplet {
 		scene.showAll();
 		// enable computation of the frustum planes equations (disabled by
 		// default)
-		scene.enableFrustumEquationsUpdate();
-		scene.setGridIsDrawn(false);
-		scene.setAxisIsDrawn(false);
+		scene.enableBoundaryEquations();
+		scene.setGridVisualHint(false);
+		scene.setAxisVisualHint(false);
 
 		cajas = new AABox[boxCount];
 		for (int i = 0; i < cajas.length; i++)

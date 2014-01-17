@@ -12,8 +12,8 @@ public class CameraInterpolation extends PApplet {
 	public void setup()	{
 		size(640, 360, P3D);
 		scene = new Scene(this); 
-		scene.setGridIsDrawn(true);
-		scene.setAxisIsDrawn(true);
+		scene.setGridVisualHint(true);
+		scene.setAxisVisualHint(true);
 		//create the camera path:
 		//scene.camera().setPosition(new PVector(80,0,0));
 		scene.camera().setPosition(new Vec(80,0,0));
@@ -45,7 +45,7 @@ public class CameraInterpolation extends PApplet {
 		scene.camera().lookAt( scene.camera().sceneCenter() );
 		scene.showAll();
 		
-		scene.setViewPointPathsAreDrawn(true);
+		scene.setPathsVisualHint(true);
 	}
 	
 	public void keyPressed() {

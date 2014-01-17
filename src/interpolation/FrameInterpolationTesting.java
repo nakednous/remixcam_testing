@@ -4,16 +4,15 @@ import processing.core.*;
 import remixlab.proscene.*;
 import remixlab.dandelion.core.*;
 
-public class FrameInterpolation extends PApplet {
+public class FrameInterpolationTesting extends PApplet {
 	Scene scene;
 	InteractiveFrame keyFrame[];
 	KeyFrameInterpolator kfi;
 	int nbKeyFrames;
-	float scl = 5;
 
 	public void setup() {
 	  size(640, 360, P3D);
-	  nbKeyFrames = 4;
+	  nbKeyFrames = 5;
 	  scene = new Scene(this);  
 	  scene.setAxisVisualHint(false);
 	  scene.setGridVisualHint(false);
@@ -30,8 +29,18 @@ public class FrameInterpolation extends PApplet {
 	  for (int i=0; i<nbKeyFrames; i++) {
 	    keyFrame[i] = new InteractiveFrame(scene);
 	    keyFrame[i].setPosition(-100 + 200*i/(nbKeyFrames-1), 0, 0);
-	    kfi.addKeyFrame(keyFrame[i]);
+	    keyFrame[i].setScaling(random(-2.0f, -2.0f), random(-2.0f, 2.0f), random(-2.0f, 2.0f));
 	  }
+	  
+	  /*
+	  keyFrame[2].setScaling(random(-2.0f, -0.5f), random(0.5f, 2.0f), random(0.5f, 2.0f));
+	  keyFrame[3].setScaling(random(0.5f, 2.0f), random(-2.0f, -0.5f), random(0.5f, 2.0f));
+	  keyFrame[4].setScaling(random(0.5f, 2.0f), random(0.5f, 2.0f), random(-2.0f, -0.5f));
+	  */
+	  
+	  for (int i=0; i<nbKeyFrames; i++) {   
+		    kfi.addKeyFrame(keyFrame[i]);
+		  }
 	  
 	  kfi.startInterpolation();
 	}
@@ -43,7 +52,7 @@ public class FrameInterpolation extends PApplet {
 	  scene.drawAxis(30);
 	  popMatrix();
 	  
-	  kfi.drawPath(1, 6, scl);
+	  kfi.drawPath(5, 10);
 	  
 	  for (int i=0; i<nbKeyFrames; ++i) {
 	    pushMatrix();
@@ -64,8 +73,7 @@ public class FrameInterpolation extends PApplet {
 	  if ( key == 'u')
 	    kfi.setInterpolationSpeed(kfi.interpolationSpeed()-0.25f);
 	  if ( key == 'v')
-	    kfi.setInterpolationSpeed(kfi.interpolationSpeed()+0.25f);
-	  if(key == '+') {scl = scl*1.2f; println("scl: " + scl);}
-	  if(key == '-') {scl = scl*0.8f; println("scl: " + scl);}
+	    kfi.setInterpolationSpeed(kfi.interpolationSpeed()+0.25f);  	
 	}
+
 }

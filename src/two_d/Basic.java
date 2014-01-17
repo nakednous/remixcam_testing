@@ -30,6 +30,8 @@ public class Basic extends PApplet {
 		
 		Vec from = new Vec(-1,1);
 		Vec to = new Vec(-1,-1);
+		
+		//scene.viewpoint().frame().scaling().y(scene.viewpoint().frame().scaling().y() * 2);
 	}	
 
 	public void draw() {
@@ -66,23 +68,23 @@ public class Basic extends PApplet {
 			//scene.window().interpolateToZoomOnPixel(new Point(mouseX, mouseY));			
 			println("scale factor: " );
 			scene.window().frame().scaling().print();
-			float[] wh = scene.window().getOrthoWidthHeight();
+			float[] wh = scene.window().getBoundaryWidthHeight();
 			println("halfWidth: " + wh[0]);
 			println("halfHeight: " + wh[1]);
 			println("screenWidth: " + scene.window().screenWidth() );
 			println("screenHeight: " + scene.window().screenHeight() );			
 		}
 		if(key == 'x' || key == 'X') {
-			Vec v = scene.viewPoint().projectedCoordinatesOf(new Vec(0,0,0));
+			Vec v = scene.view().projectedCoordinatesOf(new Vec(0,0,0));
 			println(v);
 		}
 		if(key == 'v' || key == 'V') {
-			Vec v = scene.viewPoint().unprojectedCoordinatesOf(new Vec(width/2,height/2,0.5f));
+			Vec v = scene.view().unprojectedCoordinatesOf(new Vec(width/2,height/2,0.5f));
 			println(v);
 		}
 		if(key == 'z' || key == 'Z') {
 			//scene.window().fitCircle(new Vec(0,0), 20);
-			scene.window().fitCircle(new Vec(65,65), 15);
+			scene.window().fitBall(new Vec(65,65), 15);
 		}
 		if(key == 'y' || key == 'Y') {
 			scene.window().flip();			

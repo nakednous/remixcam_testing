@@ -6,7 +6,7 @@ import TUIO.TuioPoint;
 import remixlab.dandelion.agent.*;
 import remixlab.dandelion.core.Constants;
 import remixlab.dandelion.core.Constants.DOF2Action;
-import remixlab.dandelion.core.InteractiveCameraFrame;
+import remixlab.dandelion.core.InteractiveViewFrame;
 import remixlab.dandelion.core.InteractiveFrame;
 import remixlab.proscene.Scene;
 import remixlab.tersehandling.core.*;
@@ -61,7 +61,7 @@ public class TUIO6DOFAgent extends HIDAgent {
 	public void updateTuioCursor(TuioCursor tcur) {
 		PVector trans;
 		if( (grabber().getClass() == InteractiveFrame.class ) && translateZ )
-			trans = new PVector(prevEvent.getX(),prevEvent.getY(),tcur.getScreenY(scene.height()));
+			trans = new PVector(prevEvent.x(),prevEvent.y(),tcur.getScreenY(scene.height()));
 		else
 			trans = new PVector(tcur.getScreenX(scene.width()),tcur.getScreenY(scene.height()),0);
 		event = new GenericDOF6Event<DOF6Action>(prevEvent,

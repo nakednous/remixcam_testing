@@ -35,7 +35,7 @@ public class Grabbers extends PApplet {
 		//scene.terseHandler().addInAllAgentPools(button1);
 		//scene.terseHandler().addInAllAgentPools(button2);
 		
-		scene.setGridIsDrawn(true);
+		scene.setGridVisualHint(true);
 		scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
 		scene.setRadius(150);
 		scene.showAll();

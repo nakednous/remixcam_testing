@@ -6,21 +6,18 @@ import remixlab.proscene.*;
 import remixlab.dandelion.core.*;
 import remixlab.dandelion.geom.*;
 
-public class FrameInteraction extends PApplet {
+public class BoundingBox extends PApplet {
 	Scene scene;
 	InteractiveFrame iFrame;
-	int w = 800;
-	int h = 640;
-	float r = 100;
-	String renderer = P2D;
-	//String renderer = JAVA2D;
+	Rect r;
+	Vec min, max;
 
 	public void setup() {
-		size(w,h,renderer);
+		size(640, 360, P2D);
+		//size(640, 360, JAVA2D);
 		//scene = new Java2DScene(this);
 		scene = new Scene(this);
-		scene.setRadius(r);
-		scene.showAll();
+		//scene.setRadius(500);
 		iFrame = new InteractiveFrame(scene);
 		// A Scene has a single InteractiveFrame (null by default). We set it
 		// here.
@@ -64,7 +61,13 @@ public class FrameInteraction extends PApplet {
 		popMatrix();
 
 		scene.beginScreenDrawing(); text("Hello world", 5, 17);
-		scene.endScreenDrawing(); //		
+		scene.endScreenDrawing(); //
+		
+		min = new Vec(10,20);
+		max = new Vec(100,90);
+		//r = new Rect(10, 20, 90, 70);
+		fill(255,0,255);
+		rect(min.x(), min.y(), max.x()-min.x(), max.y()-min.y());
 	}
 
 	/**
@@ -130,17 +133,10 @@ public class FrameInteraction extends PApplet {
 			println("new scene radius is: " + scene.radius());
 			scene.showAll();
 		}
-		if(key == 'u')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
-		if(key == 'U')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
-		if(key == 'v')
-			scene.view().frame().scaling().x(scene.view().frame().scaling().x() * 2);
-		if(key == 'V')
-			scene.view().frame().scaling().x(scene.view().frame().scaling().x() / 2);
 		if(key == 'x') {
-			//println(scene.window().frame().magnitude());
-			println(scene.view().frame().scaling().x() + " " + scene.view().frame().scaling().y());
+			println(scene.window().frame().magnitude());
 		}
+		if(key=='t')
+			scene.window().fitBoundingBox(min, max);
 	}
 }

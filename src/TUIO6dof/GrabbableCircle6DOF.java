@@ -102,8 +102,8 @@ public class GrabbableCircle6DOF extends AbstractGrabber {
 	@Override
 	public boolean checkIfGrabsInput(TerseEvent event) {
 		// if (event instanceof GenericDOF2Event) {
-		float x = ((GenericDOF6Event<?>) event).getX();
-		float y = ((GenericDOF6Event<?>) event).getY();
+		float x = ((GenericDOF6Event<?>) event).x();
+		float y = ((GenericDOF6Event<?>) event).y();
 		return (PApplet.pow((x - center.x), 2) / PApplet.pow(radiusX, 2)
 				+ PApplet.pow((y - center.y), 2) / PApplet.pow(radiusY, 2) <= 1);
 		// }
@@ -127,20 +127,20 @@ public class GrabbableCircle6DOF extends AbstractGrabber {
 					sWeight++;
 				break;
 			case CHANGE_POSITION:
-				setPosition(((GenericDOF6Event<?>) event).getX(),
-						((GenericDOF6Event<?>) event).getY(),
-						((GenericDOF6Event<?>) event).getZ());
+				setPosition(((GenericDOF6Event<?>) event).x(),
+						((GenericDOF6Event<?>) event).y(),
+						((GenericDOF6Event<?>) event).z());
 				break;
 
 			case CHANGE_ROTATION:
-				setRotation(((GenericDOF6Event<?>) event).getRX(),
-						((GenericDOF6Event<?>) event).getRY(),
-						((GenericDOF6Event<?>) event).getRZ());
+				setRotation(((GenericDOF6Event<?>) event).rx(),
+						((GenericDOF6Event<?>) event).ry(),
+						((GenericDOF6Event<?>) event).rz());
 				PApplet.println(rotation);
 				break;
 			case CHANGE_SHAPE:
-				radiusX += ((GenericDOF6Event<?>) event).getDX();
-				radiusY += ((GenericDOF6Event<?>) event).getDY();
+				radiusX += ((GenericDOF6Event<?>) event).dx();
+				radiusY += ((GenericDOF6Event<?>) event).dy();
 				break;
 			}
 		}

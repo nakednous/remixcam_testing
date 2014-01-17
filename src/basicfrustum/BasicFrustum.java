@@ -16,9 +16,9 @@ public class BasicFrustum extends PApplet {
 		Root = new BoxNode(p, Vec.mult(p, -1.0f));
 		Root.buildBoxHierarchy(4);
         scene = new Scene(this);
-        scene.enableFrustumEquationsUpdate();        
-        scene.setGridIsDrawn(true);
-        scene.setAxisIsDrawn(true);
+        scene.enableBoundaryEquations();        
+        scene.setGridVisualHint(true);
+        scene.setAxisVisualHint(true);
 	}
 
 	public void draw() {

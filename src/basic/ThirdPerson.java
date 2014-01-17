@@ -17,8 +17,8 @@ public class ThirdPerson extends PApplet {
 		size(640, 360, P3D);
 		scene = new Scene(this);
 		scene.setRadius(400);
-		scene.setGridIsDrawn(false);
-		scene.setAxisIsDrawn(false);
+		scene.setGridVisualHint(false);
+		scene.setAxisVisualHint(false);
 		// press 'f' to display frame selection hints
 		
 		avatar = new InteractiveAvatarFrame(scene);
@@ -86,7 +86,7 @@ public class ThirdPerson extends PApplet {
 		else {
 			scene.unsetAvatar(); //simply sets avatar as null
 			scene.defaultMouseAgent().setAsArcball();
-			scene.defaultMouseAgent().setDefaultGrabber(scene.viewPoint().frame());
+			scene.defaultMouseAgent().setDefaultGrabber(scene.view().frame());
 			scene.defaultMouseAgent().enableTracking();
 		}
 	}

@@ -13,7 +13,7 @@ Vec camPos;
 		size(640, 360, OPENGL);
 		//size(640, 360, P3D);
 		scene = new Scene(this);
-		scene.setAxisIsDrawn(true);
+		scene.setAxisVisualHint(true);
 		scene.setRadius(150);		
 		scene.showAll();
 	}

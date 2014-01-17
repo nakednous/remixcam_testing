@@ -141,7 +141,7 @@ public class Combo extends PApplet {
 		s.pg().pushStyle();
 		s.pg().stroke(255, 255, 0);
 		s.pg().fill(255, 255, 0, 160);
-		s.drawWindow(scene.window());
+		s.drawCamera(scene.window());
 		s.pg().popStyle();	
 	}
 	
@@ -159,18 +159,21 @@ public class Combo extends PApplet {
 		}
 	}
 	
-	public void printFrame(RefFrame frame) {
+	public void printFrame(Frame frame) {
 		println("Translation: " + frame.translation());
 		println("Angle: " + frame.rotation().angle());
 		println("Scaling: " + frame.scaling());
 	}
 
 	public void keyPressed() {
+		if(key=='t') scene.window().frame().scale(-1, 1);
+		if(key=='u') scene.window().frame().scale(1, -1);
+		if(key=='v') scene.window().frame().scale(-1, -1);
+		if(key == 'x' || key == 'X') {
+			scene.window().flip();			
+		}
 		if (key == 'u' || key == 'U') {
 			drawHints = !drawHints;
-		}
-		if(key == 'v' || key == 'V') {
-			scene.window().flip();			
 		}
 	}
 }

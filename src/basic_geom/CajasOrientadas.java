@@ -18,7 +18,7 @@ public class CajasOrientadas extends PApplet {
 		//size(640, 360, P3D);
 		size(640, 360, OPENGL);
 		scene = new Scene(this);	
-		scene.setGridIsDrawn(true);		
+		scene.setGridVisualHint(true);		
 		scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
 		scene.setRadius(160);
 		//scene.camera().setPosition(new PVector(10,0,0));

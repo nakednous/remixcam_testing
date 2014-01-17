@@ -33,7 +33,7 @@ public class ConstrainedCamera extends PApplet  {
 		activeConstraint = 0;
 		scene.camera().frame().setConstraint(constraints[activeConstraint]);
 		
-		scene.setAxisIsDrawn(true);
+		scene.setAxisVisualHint(true);
 	}
 	
 	public static AxisPlaneConstraint.Type nextTranslationConstraintType(AxisPlaneConstraint.Type type) {

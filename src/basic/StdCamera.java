@@ -26,8 +26,8 @@ public class StdCamera extends PApplet {
 		scene.showAll();
 		
 		// enable computation of the frustum planes equations (disabled by default)
-		scene.enableFrustumEquationsUpdate();
-		scene.setGridIsDrawn(false);
+		scene.enableBoundaryEquations();
+		scene.setGridVisualHint(false);
 		scene.addDrawHandler(this, "mainDrawing");
 		
 		auxCanvas = createGraphics(640, 360, P3D);
@@ -35,8 +35,8 @@ public class StdCamera extends PApplet {
 		// is to be drawn (see drawing code below) to its constructor.
 		auxScene = new Scene(this, auxCanvas, 0, 360);
 		auxScene.camera().setType(Camera.Type.ORTHOGRAPHIC);
-		auxScene.setAxisIsDrawn(false);
-		auxScene.setGridIsDrawn(false);
+		auxScene.setAxisVisualHint(false);
+		auxScene.setGridVisualHint(false);
 		auxScene.setRadius(400);
 		auxScene.showAll();
 		auxScene.addDrawHandler(this, "auxiliarDrawing");
@@ -49,14 +49,14 @@ public class StdCamera extends PApplet {
 		p.background(0);
 		p.noStroke();
 		// the main viewer camera is used to cull the sphere object against its frustum
-		switch (scene.camera().sphereIsVisible(new Vec(0, 0, 0), 40)) {
+		switch (scene.camera().ballIsVisible(new Vec(0, 0, 0), scene.radius()*0.6f)) {
 		case VISIBLE:
 			p.fill(0, 255, 0);
-			p.sphere(40);
+			p.sphere(scene.radius()*0.6f);
 			break;
 		case SEMIVISIBLE:
 			p.fill(255, 0, 0);
-			p.sphere(40);
+			p.sphere(scene.radius()*0.6f);
 			break;
 		case INVISIBLE:
 			break;
@@ -103,8 +103,15 @@ public class StdCamera extends PApplet {
 	}
 	
 	public void keyPressed() {
-		if(key == 'v')
+		if(key == 't') {
 			cam.toggleMode();
+			this.redraw();
+		}
+		//TODO hoe to settint scal
+		if(key == 'u')
+			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
+		if(key == 'v')
+			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
 	}
 	
 	public static void main(String args[]) {
@@ -161,7 +168,7 @@ public class StdCamera extends PApplet {
 		}
 		
 		@Override
-		public float[] getOrthoWidthHeight(float[] target) {
+		public float[] getBoundaryWidthHeight(float[] target) {
 			if ((target == null) || (target.length != 2)) {
 				target = new float[2];
 			}
@@ -175,7 +182,7 @@ public class StdCamera extends PApplet {
 				return target;
 			}
 			else
-				return super.getOrthoWidthHeight(target);
+				return super.getBoundaryWidthHeight(target);
 		}
 	}
 }

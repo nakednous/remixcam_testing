@@ -28,8 +28,8 @@ public class CameraCrane extends PApplet {
 
 		canvas = createGraphics(width, mainWinHeight, P3D);
 		mainScene = new Scene(this, (PGraphics3D) canvas);
-		mainScene.setGridIsDrawn(false);
-		mainScene.setAxisIsDrawn(false);
+		mainScene.setGridVisualHint(false);
+		mainScene.setAxisVisualHint(false);
 		mainScene.setRadius(110);
 		mainScene.showAll();
 		// press 'f' to display frame selection hints
@@ -39,16 +39,16 @@ public class CameraCrane extends PApplet {
 		// is to be drawn (see drawing code below) to its constructor.
 		armScene = new Scene(this, (PGraphics3D) armCanvas, 0, canvas.height);
 		armScene.setRadius(50);
-		armScene.setGridIsDrawn(false);
-		armScene.setAxisIsDrawn(false);
+		armScene.setGridVisualHint(false);
+		armScene.setAxisVisualHint(false);
 		heliCanvas = createGraphics(width / 2, (height - canvas.height), P3D);
 		// Note that we pass the upper left corner coordinates where the scene
 		// is to be drawn (see drawing code below) to its constructor.
 		heliScene = new Scene(this, (PGraphics3D) heliCanvas, canvas.width / 2,
 				canvas.height);
 		heliScene.setRadius(50);
-		heliScene.setGridIsDrawn(false);
-		heliScene.setAxisIsDrawn(false);
+		heliScene.setGridVisualHint(false);
+		heliScene.setAxisVisualHint(false);
 
 		// Frame linking
 		armCam = new ArmCam(this, 60, -60, 2);

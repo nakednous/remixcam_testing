@@ -8,9 +8,9 @@ import remixlab.dandelion.constraint.*;
 import geom.Box;
 import geom.Sphere;
 
-public class TestApi extends PApplet {
+public class TestMagAndScl extends PApplet {
 	Scene scene;
-	InteractiveFrame f1, f2, f3, f4, f5;
+	InteractiveFrame f1, f2;
 	Frame f6 = new Frame();
 	Vec v, p;
 	Vec res;
@@ -23,7 +23,7 @@ public class TestApi extends PApplet {
 	Vec end = new Vec();
 	
 	public void setup() {
-		size(840, 360, P3D);
+		size(640, 360, P3D);
 		
 		//frameRate(20);
 		scene = new Scene(this);
@@ -41,49 +41,20 @@ public class TestApi extends PApplet {
 		//f1 = new TestIFrame(scene);
 		f1.translate(20, 30, 60);
 		//f1.rotate(new Quat(new Vec(1,0,0), HALF_PI));
-		f1.scale(2, 1.7f, -2.3f);
+		//f1.scale(2, 1.7f, -2.3f);
 		//f1.scale(1, 1, -1);
 		//f1.removeFromMouseGrabberPool();
 		
-		box1 = new Box(scene, f1);
+		//box1 = new Box(scene, f1);
 		
 		f2 = new InteractiveFrame(scene);
 		//f2 = new TestIFrame(scene);
 		f2.setReferenceFrame(f1);
 		f2.translate(30, 20, -30);
 		//f2.rotate(new Quat(new Vec(0,1,0), -QUARTER_PI));
-		f2.scale(-1.2f, 1.1f, 0.8f);
+		//f2.scale(-1.2f, 1.1f, 0.8f);
 		//f2.scale(-1, 1, 1);
 		//f2.removeFromMouseGrabberPool();
-		
-		f3 = new InteractiveFrame(scene);
-		//f3 = new TestIFrame(scene);
-		f3.setReferenceFrame(f1);
-		f3.translate(15, 20, -30);
-		f3.rotate(new Quat(new Vec(0,1,0), -HALF_PI));		
-		f3.scale(1, -1.3f, 1.2f);
-		//f3.scale(1, -1, 1);
-		//f3.removeFromMouseGrabberPool();
-		
-		f4 = new InteractiveFrame(scene);
-		//f4 = new TestIFrame(scene);
-		f4.setReferenceFrame(f2);
-		f4.translate(20, 15, 30);
-		f4.rotate(new Quat(new Vec(0,1,0), QUARTER_PI));
-		f4.scale(-1.3f, -0.9f, 0.8f);
-		//f4.scale(-1, -1, 1);
-		//f4.removeFromMouseGrabberPool();
-		
-		f5 = new InteractiveFrame(scene);
-		//f5 = new TestIFrame(scene);
-		f5.setReferenceFrame(f4);
-		f5.translate(20, 15, 30);
-		f5.rotate(new Quat(new Vec(0,1,0), QUARTER_PI));
-		f5.scale(-1.3f, -0.9f, 0.8f);
-		//f5.scale(-1, -1, 1);
-		//f5.removeFromMouseGrabberPool();
-		
-		box5 = new Box(scene, f5);
 		
 		scene.setRadius(200);
 		scene.showAll();
@@ -108,7 +79,7 @@ public class TestApi extends PApplet {
 		//drawPrimitives(color(255));
 		
 		drawLine();
-		drawBoxes();
+		//drawBoxes();
 	    
 		/**
 		pushMatrix();		
@@ -128,25 +99,10 @@ public class TestApi extends PApplet {
 		  scene.applyTransformation(f1);
 		  scene.drawAxis(40);
 		  drawPrimitives(color(255,0,0));
-		  pushMatrix();		  
-		    scene.applyTransformation(f3);
-		    scene.drawAxis(40);
-		    drawPrimitives(color(0,0,255));
-		  popMatrix();
 		  pushMatrix();
 		    scene.applyTransformation(f2);
 		    scene.drawAxis(40);
-		    drawPrimitives(color(0,255,0));
-		    pushMatrix();
-		      scene.applyTransformation(f4);
-		      scene.drawAxis(40);
-		      drawPrimitives(color(125));
-		      pushMatrix();
-		        scene.applyTransformation(f5);
-		        scene.drawAxis(40);
-		        drawPrimitives(color(255,0,255));
-		      popMatrix();	      
-		    popMatrix();    		    
+		    drawPrimitives(color(0,255,0));  		    
 		  popMatrix();
 		popMatrix();
 		// */
@@ -211,7 +167,6 @@ public class TestApi extends PApplet {
 	
 	public void drawBoxes() {
 		box1.draw();
-		box5.draw();
 	}
 	
 	public void drawLine() {		
@@ -316,80 +271,27 @@ public class TestApi extends PApplet {
 	}
 	
 	public void keyPressed() {
-		if(key == 'u' || key == 'U') {
-			//Vec v = f4.zAxis();
-			//println("f4.zAxis(): " + v + " mag: " + v.mag());			
-			Mat m = f5.matrix();
-			println("f5 matrix is: ");
-			m.print();
-			f6.fromMatrix(m, f5.scaling());
-			println("f6 matrix is: ");
-			f6.matrix().print();
-		}
-		/*
-		if(key == 'v' || key == 'V') {
-			if(scene.isRightHanded())
-				scene.setLeftHanded();			
-			else
-				scene.setRightHanded();			
-		}
-		*/
-		//TODO hoe to settint scal
-		if(key == 'u')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
-		if(key == 'v')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
-		if(key == 'x') {
-			scene.camera().frame().setScaling(-scene.camera().frame().scaling().x(),
-					                           scene.camera().frame().scaling().y(),
-					                           scene.camera().frame().scaling().z());
-            println("scaling by -x");
-		}
-		if(key == 'X') {
-			scene.camera().frame().setScaling(2*scene.camera().frame().scaling().x(),
-                                              scene.camera().frame().scaling().y(),
-                                              scene.camera().frame().scaling().z());                                              
-			println("scaling by 2x");
-		}
-		if(key == 'y') {
-			scene.camera().frame().setScaling( scene.camera().frame().scaling().x(),
-					                          -scene.camera().frame().scaling().y(),
-					                           scene.camera().frame().scaling().z());
-            println("scaling by -y");
-		}
-		if(key == 'Y') {
-			scene.camera().frame().setScaling(scene.camera().frame().scaling().x(),
-											  2*scene.camera().frame().scaling().y(),
-                                              scene.camera().frame().scaling().z());                                              
-			println("scaling by 2y");
-		}
-		if(key == 'z') {
-			scene.camera().frame().setScaling( scene.camera().frame().scaling().x(),
-					                           scene.camera().frame().scaling().y(),
-					                          -scene.camera().frame().scaling().z());
-            println("scaling by -z");
-		}
-		if(key == 'Z') {
-			scene.camera().frame().setScaling(scene.camera().frame().scaling().x(),
-                                              scene.camera().frame().scaling().y(),
-                                              2*scene.camera().frame().scaling().z());                                              
-			println("scaling by 2z");
-		}		
-		if(key == 'q' || key == 'Q') {
-			/**
-			f1.setScaling( f1.scaling().x(),
-					-f1.scaling().y(),
-					f1.scaling().z()
-					);*/
-			scene.camera().lookAt(scene.center());
+		if(key == 'w' || key == 'W')
+			scene.view().flip();
+		
+		if( key == 'x' || key == 'X' ) {
+			f1.setScaling( f1.scaling().x()*2 , f1.scaling().y(), f1.scaling().z());
 		}
 		
-		if(key == 'm' || key == 'M') {
-			println("distanceToSC1(): " + distanceToSC1());
-			println("distanceToSC2(): " + distanceToSC2());
-			println("distanceToSC3(): " + distanceToSC3());
+		if( key == 'y' || key == 'Y' ) {
+			f1.setScaling( f1.scaling().x(), f1.scaling().y()*2 , f1.scaling().z());
 		}
 		
+		if( key == 'z' || key == 'Z' ) {
+			f1.setScaling( f1.scaling().x(), f1.scaling().y(), f1.scaling().z()*2 );
+		}
+		
+		if( key == 't' || key == 'T' ) {}
+		
+		if( key == 'u' || key == 'U' ) {}
+		
+		if( key == 'v' || key == 'V' ) {}
+
 		if(scene.isRightHanded())
 			println("Scene is RIGHT handed");
 		else

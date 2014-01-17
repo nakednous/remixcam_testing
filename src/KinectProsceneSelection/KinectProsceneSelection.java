@@ -311,10 +311,10 @@ public class KinectProsceneSelection extends PApplet {
 		  public boolean isSelection() {
 		    //println(distance());
 		    if(distance()<selThreshold) {
-		      scene.setFrameSelectionHintIsDrawn(true);
+		      scene.setFrameVisualHint(true);
 		      return true;
 		    }else{
-		      scene.setFrameSelectionHintIsDrawn(false);
+		      scene.setFrameVisualHint(false);
 		      return false;
 		    }
 		  }

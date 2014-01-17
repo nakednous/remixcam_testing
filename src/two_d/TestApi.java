@@ -13,8 +13,8 @@ public class TestApi extends PApplet {
 	Vec res;
 	
 	public void setup() {
-		//size(640, 360, P2D);
-		size(640, 360, JAVA2D);		
+		size(640, 360, P2D);
+		//size(640, 360, JAVA2D);		
 		scene = new Scene(this);
 		v = new Vec(20,30);
 		p = new Vec(40,30);
@@ -134,7 +134,7 @@ public class TestApi extends PApplet {
 		drawArrow(null, vec);
 	}
 	
-	public void drawArrow(RefFrame frame, Vec vec) {		
+	public void drawArrow(Frame frame, Vec vec) {		
 		if(frame != null) {
 			pushMatrix();
 			// Multiply matrix to get in the frame coordinate system.

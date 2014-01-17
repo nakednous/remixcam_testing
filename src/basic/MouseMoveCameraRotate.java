@@ -20,7 +20,7 @@ public class MouseMoveCameraRotate extends PApplet {
 	public void setup() {
 		size(640, 360, P3D);
 		scene = new Scene(this);
-		scene.enableFrustumEquationsUpdate();
+		scene.enableBoundaryEquations();
 		scene.setRadius(150);
 		scene.showAll();
 		agent = new MouseMoveAgent(scene, "MyMouseAgent");
@@ -31,7 +31,7 @@ public class MouseMoveCameraRotate extends PApplet {
 	public void draw() {
 		background(0);
 		noStroke();
-		if (scene.camera().sphereIsVisible(new Vec(0, 0, 0), 40) == Camera.Visibility.SEMIVISIBLE)
+		if (scene.camera().ballIsVisible(new Vec(0, 0, 0), 40) == Camera.Visibility.SEMIVISIBLE)
 			fill(255, 0, 0);
 		else
 			fill(0, 255, 0);
@@ -45,7 +45,7 @@ public class MouseMoveCameraRotate extends PApplet {
 	public void keyPressed() {
 		if (key != ' ')
 			return;
-		if (!scene.terseHandler().isAgentRegistered(agent)) {
+		if (!scene.terseHandler().agentRegistered(agent)) {
 			scene.terseHandler().registerAgent(agent);
 			scene.parent.registerMethod("mouseEvent", agent);
 			scene.disableDefaultMouseAgent();

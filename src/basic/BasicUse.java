@@ -21,7 +21,7 @@ public class BasicUse extends PApplet {
 		
 		scene = new Scene(this);		
 	
-		scene.enableFrustumEquationsUpdate();
+		scene.enableBoundaryEquations();
 		scene.setRadius(150);
 		scene.showAll();		
 		
@@ -36,7 +36,7 @@ public class BasicUse extends PApplet {
 			PApplet.println("set size");
 		}
 		noStroke();
-		if( scene.camera().sphereIsVisible(new Vec(0,0,0), 40) == Camera.Visibility.SEMIVISIBLE )
+		if( scene.camera().ballIsVisible(new Vec(0,0,0), 40) == Camera.Visibility.SEMIVISIBLE )
 			fill(255, 0, 0);
 		else
 			fill(0, 255, 0);
