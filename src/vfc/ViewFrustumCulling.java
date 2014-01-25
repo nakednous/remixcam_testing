@@ -5,6 +5,7 @@ import remixlab.proscene.*;
 import remixlab.proscene.Scene.ProsceneKeyboard;
 import remixlab.proscene.Scene.ProsceneMouse;
 import remixlab.dandelion.core.*;
+import remixlab.dandelion.core.Constants.WheelAction;
 import remixlab.dandelion.geom.*;
 
 @SuppressWarnings("serial")
@@ -20,7 +21,7 @@ public class ViewFrustumCulling extends PApplet {
 		size(640, 720, P3D);
 		// declare and build the octree hierarchy
 		Vec p = new Vec(100, 70, 130);
-		Root = new OctreeNode(p, Vec.mult(p, -1.0f));
+		Root = new OctreeNode(p, Vec.multiply(p, -1.0f));
 		Root.buildBoxHierarchy(4);
 
 		canvas = createGraphics(640, 360, P3D);
@@ -43,7 +44,7 @@ public class ViewFrustumCulling extends PApplet {
 		auxMouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
 		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
 
-		handleMouse();
+		//handleMouse();
 	}
 
 	public void draw() {
@@ -64,12 +65,19 @@ public class ViewFrustumCulling extends PApplet {
 		auxScene.pg3d().pushStyle();
 		auxScene.pg3d().stroke(255,255,0);
 		auxScene.pg3d().fill(255,255,0,160);
-		auxScene.drawCamera(scene.camera());
+		auxScene.drawEye(scene.camera());
 		auxScene.pg3d().popStyle();
 		auxScene.endDraw();
 		auxCanvas.endDraw();
 		// We retrieve the scene upper left coordinates defined above.
 		image(auxCanvas, auxScene.upperLeftCorner.x, auxScene.upperLeftCorner.y);
+	}
+	
+	public void keyPressed() {
+		if(key == 'j')
+			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.ZOOM);
+		if(key == 'k')
+			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.SCALE);
 	}
 	
 	public void handleMouse() {

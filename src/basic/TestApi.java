@@ -272,7 +272,7 @@ public class TestApi extends PApplet {
 		if( wp.found ) {
 			screenPoint.set(mouseX, mouseY);
 			scene.camera().convertClickToLine(screenPoint, orig, dir);				
-			end = Vec.add(orig, Vec.mult(dir, 1000.0f));
+			end = Vec.add(orig, Vec.multiply(dir, 1000.0f));
 			orig.print();
 			dir.print();
 			end.print();
@@ -286,14 +286,14 @@ public class TestApi extends PApplet {
 	public float distanceToSC2() {				
 		Vec zCam = scene.camera().frame().zAxis();		
 		zCam.normalize();
-		Vec cam2SceneCenter = Vec.sub(scene.camera().position(), scene.camera().sceneCenter());
+		Vec cam2SceneCenter = Vec.subtract(scene.camera().position(), scene.camera().sceneCenter());
 		return Math.abs(Vec.dot(cam2SceneCenter, zCam));
 	}
 	
 	public float distanceToSC3() {	
 		Vec zCam = scene.camera().frame().magnitude().z() > 0 ? scene.camera().frame().zAxis() : scene.camera().frame().zAxis(false);
 		zCam.normalize();
-		Vec cam2SceneCenter = Vec.sub(scene.camera().position(), scene.camera().sceneCenter());
+		Vec cam2SceneCenter = Vec.subtract(scene.camera().position(), scene.camera().sceneCenter());
 		return Math.abs(Vec.dot(cam2SceneCenter, zCam));
 	}
 
@@ -304,14 +304,14 @@ public class TestApi extends PApplet {
 	public float distanceToARP2() {
 		Vec zCam = scene.camera().frame().zAxis();	
 		zCam.normalize();
-		Vec cam2arp = Vec.sub(scene.camera().position(), scene.camera().arcballReferencePoint());
+		Vec cam2arp = Vec.subtract(scene.camera().position(), scene.camera().arcballReferencePoint());
 		return Math.abs(Vec.dot(cam2arp, zCam));
 	}
 	
 	public float distanceToARP3() {
 		Vec zCam = scene.camera().frame().magnitude().z() > 0 ? scene.camera().frame().zAxis() : scene.camera().frame().zAxis(false);
 		zCam.normalize();
-		Vec cam2arp = Vec.sub(scene.camera().position(), scene.camera().arcballReferencePoint());
+		Vec cam2arp = Vec.subtract(scene.camera().position(), scene.camera().arcballReferencePoint());
 		return Math.abs(Vec.dot(cam2arp, zCam));
 	}
 	
@@ -336,9 +336,9 @@ public class TestApi extends PApplet {
 		*/
 		//TODO hoe to settint scal
 		if(key == 'u')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() * 2);
 		if(key == 'v')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() / 2);
 		if(key == 'x') {
 			scene.camera().frame().setScaling(-scene.camera().frame().scaling().x(),
 					                           scene.camera().frame().scaling().y(),

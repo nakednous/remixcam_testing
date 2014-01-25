@@ -58,7 +58,7 @@ public class TwoViews extends PApplet {
 		auxScene.pg().pushStyle();		
 		auxScene.pg().stroke(255,255,0);
 		auxScene.pg().fill(255,255,0,160);
-		auxScene.drawCamera(scene.window());
+		auxScene.drawEye(scene.window());
 		auxScene.pg().popStyle();		
 		auxScene.endDraw();
 		auxCanvas.endDraw();

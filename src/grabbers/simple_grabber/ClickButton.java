@@ -17,7 +17,7 @@ public class ClickButton extends Button2D {
 	@Override
 	public void performInteraction(TerseEvent event) {
 		if (event instanceof ClickEvent)
-			if (((ClickEvent) event).getClickCount() == 1) {
+			if (((ClickEvent) event).clickCount() == 1) {
 				if (addBox)
 					((Grabbers)parent).addBox();
 				else

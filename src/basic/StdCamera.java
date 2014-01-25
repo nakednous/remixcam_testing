@@ -3,6 +3,8 @@ package basic;
 import processing.core.*;
 import processing.opengl.*;
 import remixlab.dandelion.core.*;
+import remixlab.dandelion.core.Constants.DOF2Action;
+import remixlab.dandelion.core.Constants.WheelAction;
 import remixlab.proscene.*;
 import remixlab.dandelion.geom.*;
 
@@ -21,7 +23,7 @@ public class StdCamera extends PApplet {
 		cam = new StandardCamera(scene);
 		scene.camera(cam);
 		
-		scene.camera().setType(Camera.Type.ORTHOGRAPHIC);
+		//scene.camera().setType(Camera.Type.ORTHOGRAPHIC);
 		scene.setRadius(200);
 		scene.showAll();
 		
@@ -68,7 +70,7 @@ public class StdCamera extends PApplet {
 		s.pg3d().pushStyle();
 		s.pg3d().stroke(255,255,0);
 		s.pg3d().fill(255,255,0,160);
-		s.drawCamera(scene.camera());
+		s.drawEye(scene.camera());
 		s.pg3d().popStyle();
 	}
 
@@ -107,11 +109,19 @@ public class StdCamera extends PApplet {
 			cam.toggleMode();
 			this.redraw();
 		}
+		if( key == 'u' )
+			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.ZOOM);
+		if( key == 'v' )
+			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.SCALE);
+		println(scene.camera().frame().scaling().y());
+		
+		/*
 		//TODO hoe to settint scal
 		if(key == 'u')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() * 2);
 		if(key == 'v')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() / 2);
+		*/
 	}
 	
 	public static void main(String args[]) {
@@ -124,15 +134,9 @@ public class StdCamera extends PApplet {
 		
 	    public StandardCamera(AbstractScene scn) {
 	    	super(scn);
-	    	standard = true;
+	    	standard = false;
 	    	orthoSize = 1;
 	    }
-				
-		/*
-		protected StandardCamera(Camera oCam) {
-			super(oCam);
-		}
-		// */
 		
 	    public void toggleMode() {
 	    	standard = !standard;
@@ -158,31 +162,11 @@ public class StdCamera extends PApplet {
 		    return super.zFar();
 		}
 		
-		public void changeStandardOrthoFrustumSize(boolean augment) {
-			//if( standard && (type() == Camera.Type.ORTHOGRAPHIC) )
-				modified();
-			if (augment)
-				orthoSize *= 1.01f;
-			else
-				orthoSize /= 1.01f;
-		}
-		
 		@Override
-		public float[] getBoundaryWidthHeight(float[] target) {
-			if ((target == null) || (target.length != 2)) {
-				target = new float[2];
-			}
-			
-			if(standard) {
-				float dist = sceneRadius() * orthoSize;
-				// 1. halfWidth
-				target[0] = dist * ((aspectRatio() < 1.0f) ? 1.0f : aspectRatio());
-				// 2. halfHeight
-				target[1] = dist * ((aspectRatio() < 1.0f) ? 1.0f / aspectRatio() : 1.0f);
-				return target;
-			}
-			else
-				return super.getBoundaryWidthHeight(target);
+		public float rescalingOrthoFactor() {
+			if(isStandard())
+				return 1.0f;
+			return super.rescalingOrthoFactor();
 		}
 	}
 }

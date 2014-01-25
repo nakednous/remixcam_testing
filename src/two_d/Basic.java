@@ -75,11 +75,11 @@ public class Basic extends PApplet {
 			println("screenHeight: " + scene.window().screenHeight() );			
 		}
 		if(key == 'x' || key == 'X') {
-			Vec v = scene.view().projectedCoordinatesOf(new Vec(0,0,0));
+			Vec v = scene.eye().projectedCoordinatesOf(new Vec(0,0,0));
 			println(v);
 		}
 		if(key == 'v' || key == 'V') {
-			Vec v = scene.view().unprojectedCoordinatesOf(new Vec(width/2,height/2,0.5f));
+			Vec v = scene.eye().unprojectedCoordinatesOf(new Vec(width/2,height/2,0.5f));
 			println(v);
 		}
 		if(key == 'z' || key == 'Z') {

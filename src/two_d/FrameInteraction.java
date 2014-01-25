@@ -3,17 +3,19 @@ package two_d;
 import processing.core.*;
 import processing.opengl.*;
 import remixlab.proscene.*;
+import remixlab.tersehandling.core.EventConstants;
 import remixlab.dandelion.core.*;
+import remixlab.dandelion.core.Constants.DOF2Action;
 import remixlab.dandelion.geom.*;
 
 public class FrameInteraction extends PApplet {
 	Scene scene;
 	InteractiveFrame iFrame;
-	int w = 800;
-	int h = 640;
+	int w = 640;
+	int h = 360;
 	float r = 100;
-	String renderer = P2D;
-	//String renderer = JAVA2D;
+	//String renderer = P2D;
+	String renderer = JAVA2D;
 
 	public void setup() {
 		size(w,h,renderer);
@@ -32,6 +34,7 @@ public class FrameInteraction extends PApplet {
 		// press 'f' to display frame selection hints
 		//scene.setShortcut('f', DLKeyboardAction.DRAW_FRAME_SELECTION_HINT);
 		scene.setFrameVisualHint(true);
+		//scene.defaultMouseAgent().cameraProfile().setBinding(EventConstants.TH_LEFT, DOF2Action.CAD_ROTATE);
 	}
 
 	public void draw() {	
@@ -131,16 +134,16 @@ public class FrameInteraction extends PApplet {
 			scene.showAll();
 		}
 		if(key == 'u')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() * 2);
 		if(key == 'U')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() / 2);
 		if(key == 'v')
-			scene.view().frame().scaling().x(scene.view().frame().scaling().x() * 2);
+			scene.eye().frame().scaling().x(scene.eye().frame().scaling().x() * 2);
 		if(key == 'V')
-			scene.view().frame().scaling().x(scene.view().frame().scaling().x() / 2);
+			scene.eye().frame().scaling().x(scene.eye().frame().scaling().x() / 2);
 		if(key == 'x') {
 			//println(scene.window().frame().magnitude());
-			println(scene.view().frame().scaling().x() + " " + scene.view().frame().scaling().y());
+			println(scene.eye().frame().scaling().x() + " " + scene.eye().frame().scaling().y());
 		}
 	}
 }

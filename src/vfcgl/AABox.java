@@ -20,7 +20,7 @@ public class AABox {
 
 	public void draw(Scene scn, Camera camera) {
 		scene = scn;
-		draw(scn.parent, camera, false, false);
+		draw(scn.pApplet(), camera, false, false);
 		// bypass it if you don't want vfc
 		// drawCube(parent, true, false);
 	}

@@ -23,7 +23,7 @@ public abstract class Button2D extends AbstractGrabber {
 	public Button2D(Scene scn, PVector p, String t) {
 		scene = scn;
 		scene.defaultMouseAgent().addInPool(this);
-		parent = (Grabbers)scene.parent;
+		parent = (Grabbers)scene.pApplet();
 		position = p;
 		myText = t;
 		myFont = parent.createFont("FFScala", 24);

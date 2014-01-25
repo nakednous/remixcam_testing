@@ -13,14 +13,14 @@ public class Sphere {
 	
 	public Sphere(Scene scn, InteractiveFrame iF) {
 		scene = scn;
-		parent = scn.parent;
+		parent = scn.pApplet();
 		iFrame = iF;
 		setRadius(10);
 	}
 	
 	public Sphere(Scene scn) {
 		scene = scn;
-		parent = scn.parent;
+		parent = scn.pApplet();
 		iFrame = new InteractiveFrame(scn);
 		setRadius(10);
 	}

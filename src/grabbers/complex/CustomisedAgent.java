@@ -18,7 +18,7 @@ public class CustomisedAgent extends Agent {
 
 	public CustomisedAgent(AbstractScene scn, String n) {
 		super(scn.terseHandler(), n);
-		parent = (Grabbers) ((Scene) scn).parent;
+		parent = (Grabbers) ((Scene) scn).pApplet();
 		parent.registerMethod("mouseEvent", this);
 		//parent.registerMethod("keyEvent", this);
 	}

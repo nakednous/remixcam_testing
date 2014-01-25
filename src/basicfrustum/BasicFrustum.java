@@ -13,7 +13,7 @@ public class BasicFrustum extends PApplet {
 	public void setup()	{		
 		size(640, 360, P3D);
 		Vec p = new Vec(100, 70, 130);		
-		Root = new BoxNode(p, Vec.mult(p, -1.0f));
+		Root = new BoxNode(p, Vec.multiply(p, -1.0f));
 		Root.buildBoxHierarchy(4);
         scene = new Scene(this);
         scene.enableBoundaryEquations();        

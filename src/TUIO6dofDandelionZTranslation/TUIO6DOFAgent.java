@@ -6,7 +6,7 @@ import TUIO.TuioPoint;
 import remixlab.dandelion.agent.*;
 import remixlab.dandelion.core.Constants;
 import remixlab.dandelion.core.Constants.DOF2Action;
-import remixlab.dandelion.core.InteractiveViewFrame;
+import remixlab.dandelion.core.InteractiveEyeFrame;
 import remixlab.dandelion.core.InteractiveFrame;
 import remixlab.proscene.Scene;
 import remixlab.tersehandling.core.*;

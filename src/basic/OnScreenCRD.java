@@ -106,14 +106,14 @@ public class OnScreenCRD extends PApplet {
 		pushMatrix();
 		iFrame.applyTransformation();
 		//WARNING, new. need to cancel camera scaling:
-		//scene.scale(1/scene.camera().frame().scaling().x(), 1/scene.camera().frame().scaling().y(), 1/scene.camera().frame().scaling().z());
+		scene.scale(1/scene.camera().frame().scaling().x(), 1/scene.camera().frame().scaling().y(), 1/scene.camera().frame().scaling().z());
 		//scene.drawAxis(boxLenghtRatio * 1.3f);
 		scene.drawAxis(boxLenghtRatio);
 		popMatrix();
 		popMatrix();
 
 		if (rotateRespectToWorld) {
-			slide = Vec.mult(iFrame.yAxis(), -sliderValue);
+			slide = Vec.multiply(iFrame.yAxis(), -sliderValue);
 			planeIFrame.setTranslation(slide);
 			planeIFrame.setRotation(iFrame.rotation());
 		}		

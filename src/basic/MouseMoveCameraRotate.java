@@ -4,27 +4,31 @@ import processing.core.*;
 import processing.event.KeyEvent;
 import processing.opengl.*;
 import remixlab.dandelion.geom.*;
+import remixlab.dandelion.agent.GenericWheeledBiMotionAgent;
 import remixlab.dandelion.agent.KeyboardAgent;
 import remixlab.dandelion.agent.MouseAgent;
 import remixlab.dandelion.core.*;
 import remixlab.dandelion.core.Constants.DOF2Action;
 import remixlab.proscene.*;
 import remixlab.proscene.Scene.ProsceneKeyboard;
+import remixlab.proscene.Scene.ProsceneMouse;
 import remixlab.tersehandling.generic.event.GenericDOF2Event;
 import remixlab.tersehandling.generic.event.GenericKeyboardEvent;
 
 public class MouseMoveCameraRotate extends PApplet {
 	Scene scene;
+	MouseAgent prosceneAgent;
 	MouseMoveAgent agent;
 
 	public void setup() {
 		size(640, 360, P3D);
 		scene = new Scene(this);
+		prosceneAgent = scene.defaultMouseAgent();
 		scene.enableBoundaryEquations();
 		scene.setRadius(150);
 		scene.showAll();
 		agent = new MouseMoveAgent(scene, "MyMouseAgent");
-		scene.terseHandler().unregisterAgent(agent);
+		//scene.terseHandler().unregisterAgent(agent);
 		//scene.camera().frame().setDampingFriction(0);
 	}
 
@@ -45,22 +49,31 @@ public class MouseMoveCameraRotate extends PApplet {
 	public void keyPressed() {
 		if (key != ' ')
 			return;
-		if (!scene.terseHandler().agentRegistered(agent)) {
+		///*
+		if( scene.terseHandler().isAgentRegistered(prosceneAgent) )
+			scene.setDefaultMouseAgent(agent);
+		else
+			scene.setDefaultMouseAgent(prosceneAgent);
+		//*/
+		/*
+		if( scene.terseHandler().agentRegistered(prosceneAgent) ) {
+			scene.disableDefaultMotionAgent();
 			scene.terseHandler().registerAgent(agent);
-			scene.parent.registerMethod("mouseEvent", agent);
-			scene.disableDefaultMouseAgent();
-		} else {
-			scene.terseHandler().unregisterAgent(agent);
-			scene.parent.unregisterMethod("mouseEvent", agent);
-			scene.enableDefaultMouseAgent();
 		}
+		else
+			scene.enableDefaultMotionAgent();
+			*/
 	}
-
-	public class MouseMoveAgent extends MouseAgent {
+	
+	public class MouseMoveAgent extends ProsceneMouse {
+	//public class MouseMoveAgent extends MouseAgent {
 		GenericDOF2Event<DOF2Action> event, prevEvent;
 
-		public MouseMoveAgent(AbstractScene scn, String n) {
-			super(scn, n);
+		public MouseMoveAgent(Scene scn, String n) {
+			scn.super(scn, n);
+		  //public MouseMoveAgent(AbstractScene scn, String n) {
+			//super(scn, n);
+			terseHandler().unregisterAgent(this);
 			cameraProfile().setBinding(DOF2Action.ROTATE); // -> MouseEvent.MOVE
 			cameraProfile().setBinding(TH_LEFT, DOF2Action.TRANSLATE); // ->
 																		// MouseEvent.DRAG

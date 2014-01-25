@@ -14,7 +14,7 @@ public class Lamp {
 	
 	Lamp(Scene s) {
 		scene =  s;
-		parent = s.parent;
+		parent = s.pApplet();
 		frameArray = new InteractiveFrame[4];
 		
 		/**

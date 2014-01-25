@@ -129,7 +129,7 @@ public class RGBCube extends PApplet {
 		s.pggl().pushStyle();
 		s.pggl().fill(0,255,255);
 		s.pggl().stroke(0,255,255);
-		s.drawCamera(scene.camera());
+		s.drawEye(scene.camera());
 		s.pggl().popStyle();
 	}
 

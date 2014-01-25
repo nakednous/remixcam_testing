@@ -70,7 +70,7 @@ public class StandardCamera extends PApplet {
 	  s.pg().pushStyle();
 	  s.pg().fill(0,255,255);
 	  s.pg().stroke(0,255,255);
-	  s.drawCamera(scene.camera());
+	  s.drawEye(scene.camera());
 	  s.pg().popStyle();
 	}
 

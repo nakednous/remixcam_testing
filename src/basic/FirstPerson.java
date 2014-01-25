@@ -54,7 +54,7 @@ public class FirstPerson extends PApplet {
 	public void keyPressed() {
 		if( key == 'i') {
 			if( focusIFrame ) {
-				scene.defaultMouseAgent().setDefaultGrabber(scene.view().frame());
+				scene.defaultMouseAgent().setDefaultGrabber(scene.eye().frame());
 				scene.defaultMouseAgent().enableTracking();
 			} else {
 				scene.defaultMouseAgent().setDefaultGrabber(iFrame);

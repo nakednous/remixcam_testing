@@ -1,7 +1,10 @@
 package basic;
 
 import processing.core.*;
+import remixlab.dandelion.core.Constants.*;
 import remixlab.proscene.*;
+import remixlab.proscene.Scene.ProsceneMouse;
+import remixlab.tersehandling.core.EventConstants;
 
 public class BasicCad extends PApplet {
 	private static final long serialVersionUID = 1L;
@@ -9,10 +12,13 @@ public class BasicCad extends PApplet {
 	Scene scene;
 
 	public void setup() {
-	  size(640, 360, P3D);
+	  //size(640, 360, P3D);
+		size(360, 640, P3D);
 	  scene = new Scene(this);
-	  scene.camera().setCadRotate();
-	}	
+	  //ProsceneMouse mouse = (ProsceneMouse)scene.defaultMotionAgent();
+	  //mouse.cameraProfile().setBinding(EventConstants.TH_LEFT, DOF2Action.CAD_ROTATE);
+	  scene.defaultMouseAgent().cameraProfile().setBinding(EventConstants.TH_LEFT, DOF2Action.CAD_ROTATE);
+	}
 
 	public void draw() {
 	  background(0);

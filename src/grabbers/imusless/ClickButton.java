@@ -23,11 +23,11 @@ public class ClickButton extends Button2D {
 	@Override
 	public void performInteraction(TerseEvent event) {
 		if (event instanceof ClickEvent)
-			if (((ClickEvent) event).getClickCount() == 1)
+			if (((ClickEvent) event).clickCount() == 1)
 				if (path == 0)
 					scene.togglePathsVisualHint();
 				else
-					scene.view().playPath(path);
+					scene.eye().playPath(path);
 	}
 
 	public void display() {
@@ -39,9 +39,9 @@ public class ClickButton extends Button2D {
 				text = "edit camera paths";
 		else {
 			if (grabsAgent(scene.defaultMouseAgent())) {
-				if (scene.view().keyFrameInterpolator(path)
+				if (scene.eye().keyFrameInterpolator(path)
 						.numberOfKeyFrames() > 1)
-					if (scene.view().keyFrameInterpolator(path)
+					if (scene.eye().keyFrameInterpolator(path)
 							.interpolationIsStarted())
 						text = "stop path ";
 					else
@@ -49,7 +49,7 @@ public class ClickButton extends Button2D {
 				else
 					text = "restore position ";
 			} else {
-				if (scene.view().keyFrameInterpolator(path)
+				if (scene.eye().keyFrameInterpolator(path)
 						.numberOfKeyFrames() > 1)
 					text = "path ";
 				else

@@ -1,7 +1,11 @@
 package basic;
 import processing.core.*;
 import remixlab.proscene.*;
+import remixlab.tersehandling.core.EventConstants;
+import remixlab.tersehandling.core.Util;
 import remixlab.dandelion.core.*;
+import remixlab.dandelion.core.Constants.DOF2Action;
+import remixlab.dandelion.core.Constants.WheelAction;
 import remixlab.dandelion.geom.*;
 
 @SuppressWarnings("serial")
@@ -23,6 +27,7 @@ public class FrameInteraction extends PApplet {
 		noLights();
 		println(scene.camera().frame().scaling().x() + " " + scene.camera().frame().scaling().y());
 		//scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
+		//scene.defaultMotionAgent().frameProfile().setBinding(EventConstants.TH_LEFT, DOF2Action.CUSTOM);
 	}
 
 	public void draw() {
@@ -57,9 +62,15 @@ public class FrameInteraction extends PApplet {
 	}
 	
 	public void keyPressed() {
+		if(key == '2')
+			scene.camera().setFieldOfView((float) Math.PI / 2.0f);
+		if(key == '3')
+			scene.camera().setFieldOfView((float) Math.PI / 3.0f);
+		if(key == '4')
+			scene.camera().setFieldOfView((float) Math.PI / 4.0f);
 		if( key == 'i') {
 			if( focusIFrame ) {
-				scene.defaultMouseAgent().setDefaultGrabber(scene.view().frame());
+				scene.defaultMouseAgent().setDefaultGrabber(scene.eye().frame());
 				scene.defaultMouseAgent().enableTracking();
 			} else {
 				scene.defaultMouseAgent().setDefaultGrabber(iFrame);
@@ -67,7 +78,11 @@ public class FrameInteraction extends PApplet {
 			}
 			focusIFrame = !focusIFrame;
 		}
-		if( key == 't') {
+		if(key == 'j')
+			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.ZOOM);
+		if(key == 'k')
+			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.SCALE);
+		if( key == 't') {			
 			println(scene.camera().distanceToSceneCenter());
 			//println(scene.camera().frame().scaling().y() + " " + scene.camera().orthoCoef);
 		}
@@ -83,21 +98,21 @@ public class FrameInteraction extends PApplet {
 			scene.view().frame().scaling().x(scene.view().frame().scaling().x() / 2);
 		*/
 		if(key == 'u')
-			scene.view().frame().setScaling(scene.view().frame().scaling().x(),
-					                             scene.view().frame().scaling().y() * 2,
-					                             scene.view().frame().scaling().z());
+			scene.eye().frame().setScaling(scene.eye().frame().scaling().x(),
+					                             scene.eye().frame().scaling().y() * 2,
+					                             scene.eye().frame().scaling().z());
 		if(key == 'U')
-			scene.view().frame().setScaling(scene.view().frame().scaling().x(),
-                    							 scene.view().frame().scaling().y() / 2,
-                    							 scene.view().frame().scaling().z());
+			scene.eye().frame().setScaling(scene.eye().frame().scaling().x(),
+                    							 scene.eye().frame().scaling().y() / 2,
+                    							 scene.eye().frame().scaling().z());
 		if(key == 'v')
-			scene.view().frame().setScaling(scene.view().frame().scaling().x() * 2,
-					 							 scene.view().frame().scaling().y(),
-					 							 scene.view().frame().scaling().z());
+			scene.eye().frame().setScaling(scene.eye().frame().scaling().x() * 2,
+					 							 scene.eye().frame().scaling().y(),
+					 							 scene.eye().frame().scaling().z());
 		if(key == 'V')
-			scene.view().frame().setScaling(scene.view().frame().scaling().x() / 2,
-				                             	 scene.view().frame().scaling().y(),
-				                             	 scene.view().frame().scaling().z());
+			scene.eye().frame().setScaling(scene.eye().frame().scaling().x() / 2,
+				                             	 scene.eye().frame().scaling().y(),
+				                             	 scene.eye().frame().scaling().z());
 		if(key== '+' || key == '-' ) {
 			if(key == '+') scene.setRadius(scene.radius()*1.1f);
 			if(key == '-') scene.setRadius(scene.radius()*0.9f);

@@ -93,13 +93,13 @@ public class Visibility extends PApplet {
 	
 	public void keyPressed() {
 		if(key == 'u')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() * 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() * 2);
 		if(key == 'U')
-			scene.view().frame().scaling().y(scene.view().frame().scaling().y() / 2);
+			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() / 2);
 		if(key == 'v')
-			scene.view().frame().scaling().x(scene.view().frame().scaling().x() * 2);
+			scene.eye().frame().scaling().x(scene.eye().frame().scaling().x() * 2);
 		if(key == 'V')
-			scene.view().frame().scaling().x(scene.view().frame().scaling().x() / 2);
+			scene.eye().frame().scaling().x(scene.eye().frame().scaling().x() / 2);
 		if(key == 'x')
 			scene.window().flip();
 		if(key == 'y') {

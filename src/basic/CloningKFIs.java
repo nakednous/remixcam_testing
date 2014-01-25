@@ -11,8 +11,6 @@ import remixlab.dandelion.geom.*;
 public class CloningKFIs extends PApplet {
 	Scene mainScene, auxScene;
 	PGraphics canvas, auxCanvas;
-	
-	boolean mainMouse, auxMouse;
 
 	public void setup() {
 		size(640, 720, P3D);
@@ -37,12 +35,6 @@ public class CloningKFIs extends PApplet {
 		auxScene.setRadius(200);
 		auxScene.showAll();
 		auxScene.addDrawHandler(this, "auxiliarDrawing");
-
-		unregisterMethod("mouseEvent", mainScene.defaultMouseAgent());
-		unregisterMethod("mouseEvent", auxScene.defaultMouseAgent());
-		unregisterMethod("keyEvent", mainScene.defaultKeyboardAgent());
-		unregisterMethod("keyEvent", auxScene.defaultKeyboardAgent());
-		handleMouse();
 	}
 
 	public void mainDrawing(Scene s) {
@@ -69,7 +61,7 @@ public class CloningKFIs extends PApplet {
 		s.pg3d().pushStyle();
 		s.pg3d().stroke(255,255,0);
 		s.pg3d().fill(255,255,0,160);
-		s.drawCamera(mainScene.camera());
+		s.drawEye(mainScene.camera());
 		s.pg3d().popStyle();
 	}
 
@@ -92,24 +84,15 @@ public class CloningKFIs extends PApplet {
 	//Agent should be available all the time:
 	public void handleMouse() {
 		if (mouseY < 360) {
-			if(!mainMouse) {
-			  registerMethod("mouseEvent", mainScene.defaultMouseAgent());
-			  registerMethod("keyEvent", mainScene.defaultKeyboardAgent());			  
-			  mainMouse = true;
-			  auxMouse = false;
-			}			
-			unregisterMethod("mouseEvent", auxScene.defaultMouseAgent());
-			unregisterMethod("keyEvent", auxScene.defaultKeyboardAgent());
-			
+			mainScene.enableDefaultKeyboardAgent();
+			mainScene.enableDefaultMouseAgent();
+			auxScene.disableDefaultKeyboardAgent();
+			auxScene.disableDefaultMouseAgent();			
 		} else {
-			if(!auxMouse) {
-				registerMethod("mouseEvent", auxScene.defaultMouseAgent());
-				registerMethod("keyEvent", auxScene.defaultKeyboardAgent());
-				mainMouse = false;
-				auxMouse = true;
-			}
-			unregisterMethod("mouseEvent", mainScene.defaultMouseAgent());
-			unregisterMethod("keyEvent", mainScene.defaultKeyboardAgent());
+			mainScene.disableDefaultKeyboardAgent();
+			mainScene.disableDefaultMouseAgent();
+			auxScene.enableDefaultKeyboardAgent();
+			auxScene.enableDefaultMouseAgent();
 		}
 	}
 	

@@ -141,7 +141,7 @@ public class Combo extends PApplet {
 		s.pg().pushStyle();
 		s.pg().stroke(255, 255, 0);
 		s.pg().fill(255, 255, 0, 160);
-		s.drawCamera(scene.window());
+		s.drawEye(scene.window());
 		s.pg().popStyle();	
 	}
 	
