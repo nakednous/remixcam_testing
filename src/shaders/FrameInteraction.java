@@ -77,7 +77,7 @@ public class FrameInteraction extends PApplet {
 		
 		// /**
 		//Funciona sin transponer las matrices:
-		pmv = Mat.mult(scene.projection(), scene.modelView());
+		pmv = Mat.multiply(scene.projection(), scene.modelView());
 		pmatrix.set(pmv.get(new float[16]));
 		prosceneShader.set("proscene_transform", pmatrix);
 		// */
