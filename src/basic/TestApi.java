@@ -336,9 +336,9 @@ public class TestApi extends PApplet {
 		*/
 		//TODO hoe to settint scal
 		if(key == 'u')
-			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() * 2);
+			scene.eye().frame().scaling().setY(scene.eye().frame().scaling().y() * 2);
 		if(key == 'v')
-			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() / 2);
+			scene.eye().frame().scaling().setY(scene.eye().frame().scaling().y() / 2);
 		if(key == 'x') {
 			scene.camera().frame().setScaling(-scene.camera().frame().scaling().x(),
 					                           scene.camera().frame().scaling().y(),

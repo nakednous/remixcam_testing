@@ -13,9 +13,6 @@ public class ViewFrustumCulling extends PApplet {
 	OctreeNode Root;
 	Scene scene, auxScene;
 	PGraphics canvas, auxCanvas;
-	
-	ProsceneMouse mouse, auxMouse;
-	ProsceneKeyboard keyboard, auxKeyboard;
 
 	public void setup() {
 		size(640, 720, P3D);
@@ -38,13 +35,6 @@ public class ViewFrustumCulling extends PApplet {
 		auxScene.setGridVisualHint(false);
 		auxScene.setRadius(200);
 		auxScene.showAll();
-		
-		mouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
-		keyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
-		auxMouse = (ProsceneMouse)scene.terseHandler().agent("proscene_mouse");
-		auxKeyboard = (ProsceneKeyboard)scene.terseHandler().agent("proscene_keyboard");
-
-		//handleMouse();
 	}
 
 	public void draw() {
@@ -70,7 +60,7 @@ public class ViewFrustumCulling extends PApplet {
 		auxScene.endDraw();
 		auxCanvas.endDraw();
 		// We retrieve the scene upper left coordinates defined above.
-		image(auxCanvas, auxScene.upperLeftCorner.x, auxScene.upperLeftCorner.y);
+		image(auxCanvas, auxScene.upperLeftCorner.x(), auxScene.upperLeftCorner.y());
 	}
 	
 	public void keyPressed() {

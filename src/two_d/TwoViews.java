@@ -64,7 +64,7 @@ public class TwoViews extends PApplet {
 		auxCanvas.endDraw();
 		
 		// We retrieve the scene upper left coordinates defined above.
-		image(auxCanvas, auxScene.upperLeftCorner.x, auxScene.upperLeftCorner.y);
+		image(auxCanvas, auxScene.upperLeftCorner.x(), auxScene.upperLeftCorner.y());
 		
 		//println("camera angle: " + scene.pinhole().frame().orientation().angle());
 	}

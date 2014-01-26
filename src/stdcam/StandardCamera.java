@@ -88,7 +88,7 @@ public class StandardCamera extends PApplet {
 	  auxScene.endDraw();
 	  auxCanvas.endDraw();
 	  // We retrieve the scene upper left coordinates defined above.
-	  image(auxCanvas, auxScene.upperLeftCorner.x, auxScene.upperLeftCorner.y);
+	  image(auxCanvas, auxScene.upperLeftCorner.x(), auxScene.upperLeftCorner.y());
 	}
 
 	public void handleMouse() {

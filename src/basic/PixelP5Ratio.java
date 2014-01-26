@@ -29,9 +29,9 @@ public class PixelP5Ratio extends PApplet {
 	public void keyPressed() {
 		//TODO danger -> with this scaling setting
 		if(key == 'u')
-			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() * 2);
+			scene.eye().frame().scaling().setY(scene.eye().frame().scaling().y() * 2);
 		if(key == 'v')
-			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() / 2);
+			scene.eye().frame().scaling().setY(scene.eye().frame().scaling().y() / 2);
 		/*
 		if(key == 'u' || key == 'U') {
 			if(scene.isRightHanded()) {

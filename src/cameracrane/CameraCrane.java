@@ -74,7 +74,7 @@ public class CameraCrane extends PApplet {
 		armScene.endDraw();
 		armCanvas.endDraw();
 		// We retrieve the scene upper left coordinates defined above.
-		image(armCanvas, armScene.upperLeftCorner.x, armScene.upperLeftCorner.y);
+		image(armCanvas, armScene.upperLeftCorner.x(), armScene.upperLeftCorner.y());
 
 		heliCanvas.beginDraw();
 		drawing(heliScene);
@@ -82,8 +82,8 @@ public class CameraCrane extends PApplet {
 		heliScene.endDraw();
 		heliCanvas.endDraw();
 		// We retrieve the scene upper left coordinates defined above.
-		image(heliCanvas, heliScene.upperLeftCorner.x,
-				heliScene.upperLeftCorner.y);
+		image(heliCanvas, heliScene.upperLeftCorner.x(),
+				heliScene.upperLeftCorner.y());
 	}
 
 	public void handleMouse() {

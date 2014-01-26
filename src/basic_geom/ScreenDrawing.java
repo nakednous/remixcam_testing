@@ -39,7 +39,7 @@ public class ScreenDrawing extends PApplet {
 		noFill();
 		beginShape();		
 		for (int i=0; i<index; i++) {			
-			vertex(points[i].x, points[i].y, 0);
+			vertex(points[i].x(), points[i].y(), 0);
 		}
 		endShape();
 		popStyle();		

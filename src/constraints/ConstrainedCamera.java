@@ -160,18 +160,18 @@ public class ConstrainedCamera extends PApplet  {
 		
 		Vec dir = new Vec(0.0f, 0.0f, 0.0f);
 		switch (transDir) {
-		case 0 : dir.x(1.0f); break;
-		case 1 : dir.y(1.0f); break;
-		case 2 : dir.z(1.0f); break;
+		case 0 : dir.setX(1.0f); break;
+		case 1 : dir.setY(1.0f); break;
+		case 2 : dir.setZ(1.0f); break;
 		}
 		
 		constraints[activeConstraint].setTranslationConstraintDirection(dir);
 
 		dir.set(0.0f, 0.0f, 0.0f);
 		switch (rotDir) {
-		case 0 : dir.x(1.0f); break;
-		case 1 : dir.y(1.0f); break;
-		case 2 : dir.z(1.0f); break;
+		case 0 : dir.setX(1.0f); break;
+		case 1 : dir.setY(1.0f); break;
+		case 2 : dir.setZ(1.0f); break;
 		}
 		constraints[activeConstraint].setRotationConstraintDirection(dir);
 	}

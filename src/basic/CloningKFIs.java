@@ -78,7 +78,7 @@ public class CloningKFIs extends PApplet {
 		auxScene.endDraw();
 		auxCanvas.endDraw();
 		// We retrieve the scene upper left coordinates defined above.
-		image(auxCanvas, auxScene.upperLeftCorner.x, auxScene.upperLeftCorner.y);
+		image(auxCanvas, auxScene.upperLeftCorner.x(), auxScene.upperLeftCorner.y());
 	}
 	
 	//Agent should be available all the time:

@@ -87,7 +87,7 @@ public class StdCamera extends PApplet {
 		auxScene.endDraw();
 		auxCanvas.endDraw();
 		// We retrieve the scene upper left coordinates defined above.
-		image(auxCanvas, auxScene.upperLeftCorner.x, auxScene.upperLeftCorner.y);
+		image(auxCanvas, auxScene.upperLeftCorner.x(), auxScene.upperLeftCorner.y());
 	}
 	
 	public void handleMouse() {
@@ -113,15 +113,6 @@ public class StdCamera extends PApplet {
 			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.ZOOM);
 		if( key == 'v' )
 			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.SCALE);
-		println(scene.camera().frame().scaling().y());
-		
-		/*
-		//TODO hoe to settint scal
-		if(key == 'u')
-			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() * 2);
-		if(key == 'v')
-			scene.eye().frame().scaling().y(scene.eye().frame().scaling().y() / 2);
-		*/
 	}
 	
 	public static void main(String args[]) {

@@ -45,34 +45,33 @@ public class MouseMoveCameraRotate extends PApplet {
 	public static void main(String args[]) {
 		PApplet.main(new String[] { "--present", "basic.MouseMoveCameraRotate" });
 	}
+	
+	public void keyPressed() {
+		  // We switch between the default mouse agent and the one we created:
+		  if ( key != ' ') return;
+		  scene.setDefaultMouseAgent( scene.terseHandler().isAgentRegistered(agent) ? prosceneAgent : agent );
+		}
 
+	
+	/*
 	public void keyPressed() {
 		if (key != ' ')
 			return;
-		///*
 		if( scene.terseHandler().isAgentRegistered(prosceneAgent) )
 			scene.setDefaultMouseAgent(agent);
 		else
 			scene.setDefaultMouseAgent(prosceneAgent);
-		//*/
-		/*
-		if( scene.terseHandler().agentRegistered(prosceneAgent) ) {
-			scene.disableDefaultMotionAgent();
-			scene.terseHandler().registerAgent(agent);
-		}
-		else
-			scene.enableDefaultMotionAgent();
-			*/
 	}
+	*/
 	
-	public class MouseMoveAgent extends ProsceneMouse {
-	//public class MouseMoveAgent extends MouseAgent {
+	//public class MouseMoveAgent extends ProsceneMouse {
+	public class MouseMoveAgent extends MouseAgent {
 		GenericDOF2Event<DOF2Action> event, prevEvent;
 
-		public MouseMoveAgent(Scene scn, String n) {
-			scn.super(scn, n);
-		  //public MouseMoveAgent(AbstractScene scn, String n) {
-			//super(scn, n);
+		//public MouseMoveAgent(Scene scn, String n) {
+			//scn.super(scn, n);
+		  public MouseMoveAgent(AbstractScene scn, String n) {
+			super(scn, n);
 			terseHandler().unregisterAgent(this);
 			cameraProfile().setBinding(DOF2Action.ROTATE); // -> MouseEvent.MOVE
 			cameraProfile().setBinding(TH_LEFT, DOF2Action.TRANSLATE); // ->
@@ -84,8 +83,8 @@ public class MouseMoveCameraRotate extends PApplet {
 			// if( e.getAction() == processing.event.MouseEvent.MOVE ||
 			// e.getAction() == processing.event.MouseEvent.DRAG) {
 			event = new GenericDOF2Event<DOF2Action>(prevEvent, e.getX()
-					- scene.upperLeftCorner.getX(), e.getY()
-					- scene.upperLeftCorner.getY(), e.getModifiers(),
+					- scene.upperLeftCorner.x(), e.getY()
+					- scene.upperLeftCorner.x(), e.getModifiers(),
 					e.getButton());
 			handle(event);
 			prevEvent = event.get();
