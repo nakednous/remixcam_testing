@@ -73,8 +73,8 @@ public class MouseMoveCameraRotate extends PApplet {
 		  public MouseMoveAgent(AbstractScene scn, String n) {
 			super(scn, n);
 			terseHandler().unregisterAgent(this);
-			cameraProfile().setBinding(DOF2Action.ROTATE); // -> MouseEvent.MOVE
-			cameraProfile().setBinding(TH_LEFT, DOF2Action.TRANSLATE); // ->
+			eyeProfile().setBinding(DOF2Action.ROTATE); // -> MouseEvent.MOVE
+			eyeProfile().setBinding(TH_LEFT, DOF2Action.TRANSLATE); // ->
 																		// MouseEvent.DRAG
 		}
 

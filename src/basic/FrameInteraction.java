@@ -2,7 +2,7 @@ package basic;
 import processing.core.*;
 import remixlab.proscene.*;
 import remixlab.tersehandling.core.EventConstants;
-import remixlab.tersehandling.core.Util;
+
 import remixlab.dandelion.core.*;
 import remixlab.dandelion.core.Constants.DOF2Action;
 import remixlab.dandelion.core.Constants.WheelAction;
@@ -79,9 +79,9 @@ public class FrameInteraction extends PApplet {
 			focusIFrame = !focusIFrame;
 		}
 		if(key == 'j')
-			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.ZOOM);
+			scene.defaultMouseAgent().eyeWheelProfile().setBinding(WheelAction.ZOOM);
 		if(key == 'k')
-			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.SCALE);
+			scene.defaultMouseAgent().eyeWheelProfile().setBinding(WheelAction.SCALE);
 		if( key == 't') {			
 			println(scene.camera().distanceToSceneCenter());
 			//println(scene.camera().frame().scaling().y() + " " + scene.camera().orthoCoef);

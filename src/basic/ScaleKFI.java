@@ -29,7 +29,7 @@ public class ScaleKFI extends PApplet {
 	 
 	public void draw() {
 	  background(0);
-	  scene.camera().keyFrameInterpolator(1).drawPath(3, 5, scl);
+	  scene.drawPath(scene.eye().keyFrameInterpolator(1), 3, 5, scl);
 	  fill(204, 102, 0);
 	  box(20, 30, 50);
 	}

@@ -21,7 +21,7 @@ public class StdCamera extends PApplet {
 		scene = new Scene(this, canvas);
 		
 		cam = new StandardCamera(scene);
-		scene.camera(cam);
+		scene.setCamera(cam);
 		
 		//scene.camera().setType(Camera.Type.ORTHOGRAPHIC);
 		scene.setRadius(200);
@@ -110,9 +110,9 @@ public class StdCamera extends PApplet {
 			this.redraw();
 		}
 		if( key == 'u' )
-			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.ZOOM);
+			scene.defaultMouseAgent().eyeWheelProfile().setBinding(WheelAction.ZOOM);
 		if( key == 'v' )
-			scene.defaultMouseAgent().cameraWheelProfile().setBinding(WheelAction.SCALE);
+			scene.defaultMouseAgent().eyeWheelProfile().setBinding(WheelAction.SCALE);
 	}
 	
 	public static void main(String args[]) {
